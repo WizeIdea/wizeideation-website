@@ -1,0 +1,62 @@
+name: Sync Obsidian → Wize Ideation → Netlify
+
+on:
+  workflow_dispatch:            # manual trigger
+  push:
+    branches:
+      - main                    # or whatever default branch you use
+    paths:
+      - '.github/workflows/**'  # re‑run if the workflow changes
+  schedule:
+    - cron: '0 */6 * * *'       # optional: run every 6 hours in case you forget a push
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read            # needed to checkout the repo
+      id-token: write           # needed for Netlify auth (if you use OIDC – optional)
+
+    steps:
+      # 1️⃣ Checkout *this* repo (the site repo)
+      - name: Checkout site repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2️⃣ Checkout the Obsidian repo (the source of markdown)
+      - name: Checkout Obsidian repo
+        uses: actions/checkout@v4
+        with:
+          repository: WizeIdea/Obsidian
+          ssh-key: ${{ secrets.OBSIDIAN_SSH_KEY }}   # you need to add this secret (your SSH private key)
+          path: obsidian
+          fetch-depth: 0
+
+      # 3️⃣ Set up Node (use the version you specified in .nvmrc or .npmrc)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'          # matches Netlify’s default runtime
+          cache: 'npm'
+
+      # 4️⃣ Install dependencies
+      - name: Install deps
+        run: npm ci
+
+      # 5️⃣ Run the markdown copy script (only copies `publish: true` files)
+      - name: Copy selected markdown
+        run: node scripts/copy-selected-md.ts
+
+      # 6️⃣ Build the static site (next export → out/)
+      - name: Build static site
+        run: npm run build
+
+      # 7️⃣ Deploy to Netlify (push static folder)
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}   # optional; CLI can infer from token
+        run: npx netlify-cli deploy --prod --dir=out --site $NETLIFY_SITE_ID
+
+      # 8️⃣ (Optional) Invalidate CDN cache – Netlify does this automatically on a production deploy.
