@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",                     // <-- ONLY this command
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "npm run generate-sitemap",
+    "postbuild": "npm run generate-sitemap",   // optional – runs after `next build`
     "generate-sitemap": "next-sitemap"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark": "^14.0.3",
-    "remark-html": "^15.0.1"
+    "remark-html": "^15.0.2"
   },
   "devDependencies": {
     "@types/node": "20.11.5",

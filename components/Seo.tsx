@@ -1,26 +1,25 @@
+// components/Seo.tsx
+'use client';          // <‑‑ 👈 this line makes the file a client component
+
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 
 export interface SeoProps {
   title: string;
   description: string;
-  /** Optional extra meta tags (e.g., ORCID, DOI) */
+  /** optional extra meta tags (ORCID, DOI, …) */
   meta?: Record<string, string>;
-  /** Open Graph image – typically the sunrise banner */
+  /** optional Open‑Graph image */
   image?: string;
 }
 
-/**
- * Centralised SEO component.
- * All pages import <Seo /> so we keep the <head> logic in one place.
- */
 const Seo: FC<SeoProps> = ({ title, description, meta = {}, image }) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();                     // client‑side hook – now allowed
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://wizeidea.com';
 
-  const metaTags = Object.entries(meta).map(([key, value]) => (
-    <meta key={key} name={key} content={value} />
+  const metaTags = Object.entries(meta).map(([k, v]) => (
+    <meta key={k} name={k} content={v} />
   ));
 
   return (
@@ -35,7 +34,7 @@ const Seo: FC<SeoProps> = ({ title, description, meta = {}, image }) => {
       <meta property="og:url" content={`${siteUrl}${pathname}`} />
       <meta property="og:type" content="website" />
       {metaTags}
-      {/* Favicons – the browser will pick the best size automatically */}
+      {/* favicons */}
       <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
       <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

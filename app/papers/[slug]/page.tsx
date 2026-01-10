@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation';
 import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import remark from 'remark';
-import html from 'remark-html';
+import { remark } from 'remark';               // ← named import
+import remarkHtml from 'remark-html';          // ← default (declared above)
 import Seo from '@/components/Seo';
+import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { FC } from 'react';
 
 type Props = {
@@ -13,21 +14,26 @@ type Props = {
 
 export const generateStaticParams = async () => {
   const dir = path.join(process.cwd(), 'content', 'papers');
-  const filenames = await fs.readdir(dir);
-  return filenames.map(file => ({
-    slug: file.replace(/\.md$/, '')
+  const files = await fs.readdir(dir);
+  return files.map((f) => ({
+    slug: f.replace(/\.md$/, ''),
   }));
 };
 
 const PaperPage: FC<Props> = async ({ params }) => {
-  const filePath = path.join(process.cwd(), 'content', 'papers', `${params.slug}.md`);
-  if (! (await fs.stat(filePath).catch(() => false))) {
-    notFound();
-  }
+  const filePath = path.join(
+    process.cwd(),
+    'content',
+    'papers',
+    `${params.slug}.md`,
+  );
+  if (!(await fs.stat(filePath).catch(() => false))) notFound();
 
-  const fileContents = await fs.readFile(filePath, 'utf8');
-  const { data, content } = matter(fileContents);
-  const processed = await remark().use(html).process(content);
+  const raw = await fs.readFile(filePath, 'utf8');
+  const { data, content } = matter(raw);
+
+  // Convert markdown → HTML
+  const processed = await remark().use(remarkHtml).process(content);
   const htmlContent = processed.toString();
 
   return (
@@ -38,18 +44,18 @@ const PaperPage: FC<Props> = async ({ params }) => {
         meta={{
           author: data.Authors?.join(', ') ?? '',
           orcid: data.ORCID ?? '',
-          doi: data.DOI ?? ''
+          doi: data.DOI ?? '',
         }}
       />
       <article className="prose lg:prose-xl max-w-none text-striationCharcoal">
         <h1>{data.title}</h1>
-        {/* Optional front‑matter display */}
         {data.Authors && (
           <p className="text-sm text-dpmOlive">
-            <strong>Authors:</strong> {Array.isArray(data.Authors) ? data.Authors.join(', ') : data.Authors}
+            <strong>Authors:</strong>{' '}
+            {Array.isArray(data.Authors) ? data.Authors.join(', ') : data.Authors}
           </p>
         )}
-        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        <MarkdownRenderer html={htmlContent} />
       </article>
     </>
   );

@@ -1,18 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export (required for Netlify push‑deploy)
+  // Static export – required for Netlify push‑deploy
   output: 'export',
-  // Future‑proof flags
+
+  // Keep React strict mode (good forensic practice)
   reactStrictMode: true,
-  swcMinify: true,
-  // Optional: custom image domains if you later host external assets
+
+  // Turn off Next‑image optimisation – we export static files
   images: {
-    unoptimized: true // because we use a static export, disable Next image optimization
+    unoptimized: true,
   },
-  // Make TypeScript errors fail the build (good for forensic rigor)
-  eslint: {
-    ignoreDuringBuilds: false
-  }
+
+  // If you want any other experimental flags, add them here.
+  // (No `swcMinify` or `eslint` – those are now removed in Next 16)
 };
 
-module.exports = nextConfig;
+export default nextConfig;

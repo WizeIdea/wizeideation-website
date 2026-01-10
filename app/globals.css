@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global focus-visible style – matches the forensic “instrument” colour */
+:focus-visible {
+  outline: 2px solid theme('colors.dpmOlive');
+  outline-offset: 2px;
+}

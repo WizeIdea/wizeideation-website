@@ -30,7 +30,7 @@ function copyPublished() {
   const allFiles = getAllMdFiles(OB_CONTENT_ROOT);
 
   for (const filePath of allFiles) {
-    const raw = fs.readFileSync(filePath, 'utf‑8');
+    const raw = fs.readFileSync(filePath, 'utf8');
     const { data } = matter(raw);
 
     // Only copy if `publish: true`
