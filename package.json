@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",                     // <-- ONLY this command
-    "start": "next start",
+    "build": "next build",                     
     "lint": "next lint",
-    "postbuild": "npm run generate-sitemap",   // optional – runs after `next build`
+    "postbuild": "npm run generate-sitemap",   
     "generate-sitemap": "next-sitemap"
   },
   "dependencies": {
