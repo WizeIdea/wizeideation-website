@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",                     
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
-    "postbuild": "npm run generate-sitemap",   
-    "generate-sitemap": "next-sitemap"
+    "postbuild": "npm run generate-sitemap",
+    "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs"
   },
   "dependencies": {
     "clsx": "^2.1.0",
