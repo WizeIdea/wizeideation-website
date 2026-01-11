@@ -1,6 +1,5 @@
 import './globals.css';
 import NavMenu from '@/components/NavMenu';
-import Seo from '@/components/Seo';
 import { FC, ReactNode } from 'react';
 
 export const metadata = {
@@ -10,9 +9,6 @@ export const metadata = {
   },
   description:
     'A high‑end research archive for stylometric alignment, AI persona architecture, and forensic linguistics.',
-  openGraph: {
-    images: [{ url: '/banner-sunrise.jpg', alt: 'Sunrise over cracked salt flats' }]
-  }
 };
 
 type Props = {
@@ -23,12 +19,8 @@ const RootLayout: FC<Props> = ({ children }) => {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Global SEO defaults – can be overridden per page */}
-        <Seo
-          title={metadata.title.default}
-          description={metadata.description}
-          image={metadata.openGraph.images[0].url}
-        />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-saltWhite text-striationCharcoal antialiased">
         <NavMenu />

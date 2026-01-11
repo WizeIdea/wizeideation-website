@@ -7,7 +7,32 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import matter from 'gray-matter'; // <-- default import (works with esModuleInterop)
-const OB_CONTENT_ROOT = path.resolve(process.cwd(), 'obsidian'); // checked‑out by the CI
+// ---------------------------------------------------------------
+// Determine the source folder that actually contains markdown files.
+//   - CI: `obsidian/` (cloned Obsidian repo)
+//   - Local dev: fallback to `content/` if `obsidian/` is empty or missing
+// ---------------------------------------------------------------
+const POSSIBLE_SOURCES = [
+    path.resolve(process.cwd(), 'obsidian'), // CI source
+    path.resolve(process.cwd(), 'content'), // local fallback
+];
+let OB_CONTENT_ROOT = '';
+for (const src of POSSIBLE_SOURCES) {
+    try {
+        const entries = fs.readdirSync(src);
+        const hasMd = entries.some((e) => e.endsWith('.md'));
+        if (hasMd) {
+            OB_CONTENT_ROOT = src;
+            break;
+        }
+    }
+    catch {
+        // folder may not exist – ignore
+    }
+}
+if (!OB_CONTENT_ROOT) {
+    console.warn('⚠️  No markdown source folder found (neither obsidian nor content). Nothing to copy.');
+}
 const DEST_ROOT = path.resolve(process.cwd(), 'content');
 function ensureDir(dir) {
     if (!fs.existsSync(dir)) {
@@ -35,6 +60,10 @@ function getAllMdFiles(dir) {
  * Main copy routine – only copies files where `publish: true`.
  */
 function copyPublished() {
+    if (!OB_CONTENT_ROOT) {
+        console.log('⚠️  No markdown files were copied because no source folder was found.');
+        return;
+    }
     const allFiles = getAllMdFiles(OB_CONTENT_ROOT);
     for (const filePath of allFiles) {
         const raw = fs.readFileSync(filePath, 'utf8'); // plain UTF‑8 string

@@ -67,3 +67,15 @@ All strategic, managerial, and fiduciary responsibility remains with the client.
 ---
 
 For engagement inquiries: contracting@wizeidea.com
+
+---
+
+## Development Notes
+
+### Static Export Workflow
+
+When adding or editing markdown files in `content/`:
+
+1. Ensure files have `publish: true` and `DocumentType` set in front-matter
+2. Run the copy script: `npm run copy-md && npm run build && npx serve out`
+3. This copies only marked files, builds the static export, and serves it locally for verification
