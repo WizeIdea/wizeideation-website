@@ -26,7 +26,7 @@ jobs:
       - name: Checkout Obsidian repo
         uses: actions/checkout@v4
         with:
-          repository: WizeIdea/Obsidian
+          repository: WizeIdea/Obsidian-Scott
           path: obsidian
           ssh-key: ${{ secrets.OBSIDIAN_SSH_KEY }}
           fetch-depth: 0
