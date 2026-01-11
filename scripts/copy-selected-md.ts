@@ -66,6 +66,6 @@ function copyPublished() {
 }
 
 // Run when invoked directly (the GitHub Action will call the script)
-if (require.main === module) {
+if (process.argv[1] === new URL(import.meta.url).pathname) {
   copyPublished();
 }

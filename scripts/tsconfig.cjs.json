@@ -3,15 +3,15 @@
   "extends": "../tsconfig.json",
 
   "compilerOptions": {
-    // Force CommonJS output for this helper script
-    "module": "CommonJS",
-    // Put the compiled file in the top‑level dist/scripts folder
+    // Output .js files for ESM compatibility with package.json's "type": "module"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "../dist/scripts",
     // These two flags are required so that a default import of a CJS module works
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 
-    // Optional – you don’t need source maps or declaration files for this tiny script
+    // Optional – you don't need source maps or declaration files for this tiny script
     "sourceMap": false,
     "declaration": false
   },

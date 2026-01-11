@@ -11,7 +11,8 @@
     "postbuild": "npm run generate-sitemap",
     "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs",
     "build-copy-script": "tsc -p scripts/tsconfig.cjs.json",
-    "copy-md": "node dist/scripts/copy-selected-md.cjs"
+    "copy-md": "node dist/scripts/copy-selected-md.js"
+
   },
   "dependencies": {
     "clsx": "^2.1.0",
