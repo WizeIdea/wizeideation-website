@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "postbuild": "npm run generate-sitemap",
-    "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs"
+    "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs",
+    "build-copy-script": "tsc scripts/copy-selected-md.ts --outDir dist/scripts --module CommonJS",
+    "copy-md": "node dist/scripts/copy-selected-md.js"
   },
   "dependencies": {
     "clsx": "^2.1.0",
@@ -31,6 +33,6 @@
     "eslint-config-next": "13.5.6",
     "postcss": "8.4.31",
     "tailwindcss": "3.4.1",
-    "typescript": "5.3.3"
+    "typescript": "^5.9.3"
   }
 }

@@ -10,7 +10,8 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,                     // ⬅️  changed: we want to emit JS files
+    "outDir": "dist",                    // ⬅️  new: where compiled JS goes
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -20,12 +21,12 @@
     "incremental": true,
     "types": [
       "node"
-    ], // <-- keep this line
-    "baseUrl": ".", // <-- new: enables absolute imports
+    ],                                   // <-- keep this line (you already have it)
+    "baseUrl": ".",                      // <-- keep – enables absolute imports
     "paths": {
       "@/*": [
         "./*"
-      ] // <-- new: maps '@/…' to the repo root
+      ]                                 // <-- keep – maps '@/…' to repo root
     },
     "plugins": [
       {
@@ -33,13 +34,17 @@
       }
     ]
   },
+
+  // 👇 we add the `scripts/**/*.ts` pattern so the helper gets compiled
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "scripts/**/*.ts"                    // <-- new: compile the copy‑script
   ],
+
   "exclude": [
     "node_modules"
   ]
