@@ -10,8 +10,8 @@
     "lint": "next lint",
     "postbuild": "npm run generate-sitemap",
     "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs",
-    "build-copy-script": "tsc scripts/copy-selected-md.ts --outDir dist/scripts --module CommonJS",
-    "copy-md": "node dist/scripts/copy-selected-md.js"
+    "build-copy-script": "tsc --project scripts/tsconfig.cjs.json && mv dist/scripts/copy-selected-md.js dist/scripts/copy-selected-md.cjs",
+    "copy-md": "node dist/scripts/copy-selected-md.cjs"
   },
   "dependencies": {
     "clsx": "^2.1.0",

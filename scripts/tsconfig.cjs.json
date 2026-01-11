@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "../dist/scripts",
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "files": ["copy-selected-md.ts"]
+}
