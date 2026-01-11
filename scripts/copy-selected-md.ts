@@ -1,44 +1,59 @@
 /**
- * copy-selected-md.ts
+ * scripts/copy-selected-md.ts
  *
- * Reads every *.md file from the remote Obsidian repo (checked out by the CI),
- * keeps only those with `publish: true` in front‑matter,
- * and copies them into the appropriate content sub‑folder
- *   - papers/
- *   - services/
- *   - projects/
- *
- * This script is run from the GitHub Action (Node 20 runtime).
+ * Copies only markdown files that have `publish: true` in their front‑matter
+ * from the checked‑out Obsidian repo into the appropriate `content/` sub‑folder.
  */
+
 import * as fs from 'fs';
 import * as path from 'path';
-import matter from 'gray-matter';
+import matter from 'gray-matter';   // <-- default import (works with esModuleInterop)
 
 type DocumentType = 'papers' | 'services' | 'projects';
 
-const OB_CONTENT_ROOT = path.resolve(process.cwd(), 'obsidian'); // repo checked out by the Action
+const OB_CONTENT_ROOT = path.resolve(process.cwd(), 'obsidian'); // checked‑out by the CI
 const DEST_ROOT = path.resolve(process.cwd(), 'content');
 
 function ensureDir(dir: string) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
 }
 
 /**
- * Walk the Obsidian folder, find .md files, filter by front‑matter.
+ * Recursively collect *.md files under a directory.
+ */
+function getAllMdFiles(dir: string): string[] {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...getAllMdFiles(fullPath));
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+/**
+ * Main copy routine – only copies files where `publish: true`.
  */
 function copyPublished() {
   const allFiles = getAllMdFiles(OB_CONTENT_ROOT);
 
   for (const filePath of allFiles) {
-    const raw = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(raw);
+    const raw = fs.readFileSync(filePath, 'utf8'); // plain UTF‑8 string
+    const { data } = matter(raw);                  // <-- works now
 
-    // Only copy if `publish: true`
+    // Skip anything that isn’t explicitly published
     if (!data.publish) continue;
 
-    // Determine destination based on DocumentType field
+    // Determine destination sub‑folder from the DocumentType front‑matter
     const docType: DocumentType = data.DocumentType?.toLowerCase();
-    if (!docType) continue; // skip if we cannot classify
+    if (!docType) continue; // ignore files without a proper type
 
     const destDir = path.join(DEST_ROOT, docType);
     ensureDir(destDir);
@@ -50,25 +65,7 @@ function copyPublished() {
   }
 }
 
-/**
- * Recursively collect *.md files.
- */
-function getAllMdFiles(dir: string): string[] {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  const files: string[] = [];
-
-  for (const entry of entries) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...getAllMdFiles(full));
-    } else if (entry.isFile() && entry.name.endsWith('.md')) {
-      files.push(full);
-    }
-  }
-  return files;
-}
-
-// Execute when the script is run directly
+// Run when invoked directly (the GitHub Action will call the script)
 if (require.main === module) {
   copyPublished();
 }

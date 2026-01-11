@@ -1,10 +1,21 @@
 {
+  // Extend the main project configuration (one level up from the scripts folder)
   "extends": "../tsconfig.json",
+
   "compilerOptions": {
+    // Force CommonJS output for this helper script
     "module": "CommonJS",
+    // Put the compiled file in the top‑level dist/scripts folder
     "outDir": "../dist/scripts",
-    "skipLibCheck": true,
-    "esModuleInterop": true
+    // These two flags are required so that a default import of a CJS module works
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Optional – you don’t need source maps or declaration files for this tiny script
+    "sourceMap": false,
+    "declaration": false
   },
-  "files": ["copy-selected-md.ts"]
+
+  // Only compile the copy‑script (keeps the compile fast)
+  "include": ["copy-selected-md.ts"]
 }
