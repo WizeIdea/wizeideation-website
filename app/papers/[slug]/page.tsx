@@ -9,9 +9,7 @@ import { notFound } from 'next/navigation';
 import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import remarkHtml from 'remark-html';
-import MarkdownRenderer from '@/components/MarkdownRenderer';
+import EnhancedMarkdownRenderer from '@/components/EnhancedMarkdownRenderer';
 import { FC } from 'react';
 import { Metadata } from 'next';
 
@@ -43,7 +41,8 @@ export const generateStaticParams = async () => {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const filePath = path.join(process.cwd(), 'content', 'papers', `${params.slug}.md`);
+  const paramsResolved = await params;
+  const filePath = path.join(process.cwd(), 'content', 'papers', `${paramsResolved.slug}.md`);
   try {
     const raw = await fs.readFile(filePath, 'utf8');
     const { data } = matter(raw);
@@ -62,13 +61,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const PaperPage: FC<Props> = async ({ params }) => {
   // -----------------------------------------------------------------
-  // 1️⃣ Locate the markdown file that matches the slug
+  // 1️⃣ Resolve params Promise and locate the markdown file that matches the slug
   // -----------------------------------------------------------------
+  const paramsResolved = await params;
   const filePath = path.join(
     process.cwd(),
     'content',
     'papers',
-    `${params.slug}.md`,
+    `${paramsResolved.slug}.md`,
   );
 
   // If the file does not exist, return a 404 page
@@ -83,13 +83,7 @@ const PaperPage: FC<Props> = async ({ params }) => {
   const { data, content } = matter(raw);
 
   // -----------------------------------------------------------------
-  // 3️⃣ Convert markdown → HTML (still on the server)
-  // -----------------------------------------------------------------
-  const processed = await remark().use(remarkHtml).process(content);
-  const htmlContent = processed.toString();
-
-  // -----------------------------------------------------------------
-  // 4️⃣ Render the page (still server‑side)
+  // 3️⃣ Render the page (still server‑side)
   // -----------------------------------------------------------------
   return (
     <>
@@ -106,8 +100,8 @@ const PaperPage: FC<Props> = async ({ params }) => {
           </p>
         )}
 
-        {/* Render the markdown HTML */}
-        <MarkdownRenderer html={htmlContent} />
+        {/* Render enhanced markdown with all features */}
+        <EnhancedMarkdownRenderer content={content} />
       </article>
     </>
   );

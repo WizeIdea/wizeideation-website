@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export – required for Netlify push‑deploy
-  output: 'export',
-
   // Keep React strict mode (good forensic practice)
   reactStrictMode: true,
 
