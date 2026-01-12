@@ -9,6 +9,14 @@ export const metadata = {
   },
   description:
     'A high‑end research archive for stylometric alignment, AI persona architecture, and forensic linguistics.',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+    'favicon-16x16': '/favicon-16x16.png',
+    'favicon-32x32': '/favicon-32x32.png',
+    'android-chrome-192x192': '/android-chrome-192x192.png',
+    'android-chrome-512x512': '/android-chrome-512x512.png',
+  },
 };
 
 type Props = {

@@ -6,6 +6,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import matter from 'gray-matter'; // <-- default import (works with esModuleInterop)
 // ---------------------------------------------------------------
 // Determine the source folder that actually contains markdown files.
@@ -66,8 +67,10 @@ function copyPublished() {
     }
     const allFiles = getAllMdFiles(OB_CONTENT_ROOT);
     for (const filePath of allFiles) {
+        console.log('Scanning:', filePath); // <-- debug line
         const raw = fs.readFileSync(filePath, 'utf8'); // plain UTF‑8 string
         const { data } = matter(raw); // <-- works now
+        console.log('  -> kept?', data.publish, data.DocumentType); // <-- debug line
         // Skip anything that isn’t explicitly published
         if (!data.publish)
             continue;
@@ -84,6 +87,6 @@ function copyPublished() {
     }
 }
 // Run when invoked directly (the GitHub Action will call the script)
-if (process.argv[1] === new URL(import.meta.url).pathname) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
     copyPublished();
 }

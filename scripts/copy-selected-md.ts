@@ -7,6 +7,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import matter from 'gray-matter';   // <-- default import (works with esModuleInterop)
 
 type DocumentType = 'papers' | 'services' | 'projects';
@@ -100,6 +101,6 @@ function copyPublished() {
 }
 
 // Run when invoked directly (the GitHub Action will call the script)
-if (process.argv[1] === new URL(import.meta.url).pathname) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   copyPublished();
 }

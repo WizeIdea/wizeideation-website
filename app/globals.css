@@ -4,6 +4,6 @@
 
 /* Global focus-visible style – matches the forensic “instrument” colour */
 :focus-visible {
-  outline: 2px solid theme('colors.dpmOlive');
+  outline: 2px solid theme('colors.dpm-olive');
   outline-offset: 2px;
 }
