@@ -16,3 +16,15 @@
   to = "/new-path/:splat"
   status = 301
   force = true
+
+# ------------------------------------------------------------------
+# Netlify plugins & edge‑function configuration (Forensic precision)
+# ------------------------------------------------------------------
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[edge_functions]]
+  # Apply the edge function to all Next.js static assets
+  path = "/_next/*"
+  function = "cache-control"
