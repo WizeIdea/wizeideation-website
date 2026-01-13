@@ -6,8 +6,6 @@ DocumentType: "projects"
 excerpt: "A comprehensive GenAI governance framework implementation for a Fortune 500 financial institution, reducing compliance risks by 78% while increasing innovation velocity by 42%."
 ---
 
-# GenAI Governance Framework: Enterprise Implementation
-
 ## Executive Summary
 
 **Client**: Fortune 500 Financial Institution (Confidential)

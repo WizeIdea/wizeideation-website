@@ -86,8 +86,11 @@ const ProjectPage: FC<Props> = async ({ params }) => {
   // -----------------------------------------------------------------
   return (
     <>
-      <article className="prose lg:prose-xl max-w-none text-striationCharcoal">
-        <h1>{data.title}</h1>
+      <article className="max-w-4xl mx-auto">
+        {/* Page title - styled to match document headings */}
+        <h1 className="font-serif-primary text-dpmOlive text-3xl font-bold mt-8 mb-4 pb-2 border-b-2 border-burntOchre">
+          {data.title}
+        </h1>
 
         {/* Render enhanced markdown with all features */}
         <EnhancedMarkdownRenderer content={content} />

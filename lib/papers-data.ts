@@ -9,6 +9,10 @@ export interface Paper {
   slug: string;
   title: string;
   excerpt: string;
+  date?: string;
+  Authors?: string | string[];
+  ORCID?: string;
+  DOI?: string;
 }
 
 /**

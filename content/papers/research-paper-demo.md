@@ -12,8 +12,6 @@ DOI: "10.1234/forensic.stylometry.2026"
 excerpt: "This paper presents a novel forensic stylometry framework for detecting and aligning authorial noise in generative AI outputs, achieving 94.2% accuracy in attribution tasks across diverse linguistic domains."
 ---
 
-# Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs
-
 ## Abstract
 
 The proliferation of generative AI systems has created an urgent need for robust authorial attribution methods. This paper introduces a forensic stylometry framework that transforms noisy generative outputs into sovereign signals through multi-modal feature extraction and adversarial alignment. Our approach achieves state-of-the-art performance with 94.2% accuracy on the AI-Attribution Benchmark (AAB-2025).
