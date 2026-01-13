@@ -7,8 +7,7 @@ on:
       - main                    # or whatever default branch you use
     paths:
       - '.github/workflows/**'  # re‑run if the workflow changes
-  schedule:
-    - cron: '0 */6 * * *'       # optional: run every 6 hours in case you forget a push
+
 
 # .github/workflows/obsidian-sync.yml  (only the relevant part shown)
 

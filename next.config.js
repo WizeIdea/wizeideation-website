@@ -2,7 +2,8 @@
 const nextConfig = {
   // Keep React strict mode (good forensic practice)
   reactStrictMode: true,
-
+  // Static export for Netlify deployment
+  output: 'export',
   // Turn off Next‑image optimisation – we export static files
   images: {
     unoptimized: true,
