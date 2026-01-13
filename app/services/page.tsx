@@ -31,7 +31,7 @@ export default function ServicesPage() {
       <Accordion
         title="1. Applied Technical Research & Forensic Auditing"
         summary="Independent research and forensic analysis to assess system behaviour, attribution reliability, and linguistic patterns in machine-mediated environments."
-        defaultOpen={true}
+        imageName="logo_s.png"
       >
         <ServiceList items={[
           <><strong>Forensic Validation Studies:</strong> Empirical audits of cross-model attribution behaviour. We provide structured technical evidence to support or challenge authorship claims, delivering reports that include methodology, findings, and analytical appendices.</>,
@@ -43,13 +43,14 @@ export default function ServicesPage() {
           <strong>Deliverable:</strong> A comprehensive technical research report with findings and analytical commentary.
         </Deliverable>
 
-        <ServiceDivider imageName="logo_r.png" />
+        <ServiceDivider imageName="logo_s.png" />
       </Accordion>
 
       {/* Service 2: Forensic Stylometry */}
       <Accordion
         title="2. Forensic Stylometry & Identity Architecture"
         summary="Specialised design of logic frameworks and pattern models to support high-fidelity authorial alignment for voice consistency and auditability."
+        imageName="logo_y.png"
       >
         <ServiceList items={[
           <><strong>Stylometric Signature Calibration:</strong> Technical extraction and modelling of an individual&rsquo;s or institution&rsquo;s unique linguistic variance. The output is a set of non-readable representations and alignment documentation, ready for system integration.</>,
@@ -65,8 +66,9 @@ export default function ServicesPage() {
 
       {/* Service 3: AI Architecture Advisory */}
       <Accordion
-        title="3. AI Architecture Advisory & Reference Implementations"
+        title="3. AI Architecture & Reference Implementations"
         summary="Structured advisory for the design and integration of deterministic, audit-ready AI systems with guidance and reference code."
+        imageName="logo_p.png"
       >
         <ServiceList items={[
           <><strong>Logic-to-Code Specification:</strong> Translating high-level language and system logic into governed architectural specifications, with a sharp focus on determinism and auditability.</>,
@@ -85,6 +87,7 @@ export default function ServicesPage() {
       <Accordion
         title="4. Structured Prompt Architecture & Design"
         summary="Structured services for prompt engineering ensuring foundational interactions with AI systems are built with precision and intent."
+        imageName="logo_o.png"
       >
         <ServiceList items={[
           <><strong>Foundational Prompt Engineering:</strong> The design of single-agent prompts, few-shot specifications, and conditioning logic for discrete tasks. This service is suitable for establishing reliable and repeatable outputs within existing workflows.</>,
@@ -98,8 +101,6 @@ export default function ServicesPage() {
         <ServiceDivider imageName="logo_o.png" />
       </Accordion>
 
-      <ServiceDivider imageName="logo_s.png" />
-
       {/* Engagement Governance */}
       <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mt-12 mb-4 pb-2 border-b border-dpmOlive">
         Engagement Governance
@@ -108,10 +109,10 @@ export default function ServicesPage() {
       <Card className="mb-8 p-6">
         <div className="space-y-4">
           <div>
-            <h3 className="font-serif-primary text-dpmOlive text-lg font-semibold mb-2">
+            <h3 className="font-serif-primary text-dpmOlive text-base font-semibold mb-2">
               Independent Consultancy
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-sm">
+            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
               Wize Ideation operates as an independent principal practice. Our deliverables are provided as discrete research findings, technical specifications, or advisory briefs. Nothing on this page should be construed as a warranty or guarantee of specific outcomes.
             </p>
           </div>
@@ -120,16 +121,16 @@ export default function ServicesPage() {
             <h3 className="font-serif-primary text-dpmOlive text-lg font-semibold mb-2">
               Governance Boundary
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-sm">
+            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
               Decisions regarding operational deployment, institutional adoption, and regulatory compliance are the exclusive responsibility of the client organisation. Our role is to inform those decisions, not make them.
             </p>
           </div>
 
           <div>
-            <h3 className="font-serif-primary text-dpmOlive text-lg font-semibold mb-2">
+            <h3 className="font-serif-primary text-dpmOlive text-base font-semibold mb-2">
               Data Handling
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-sm">
+            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
               We do not retain client data or content beyond what is necessary to fulfil agreed deliverables. All work is conducted under explicit human oversight.
             </p>
           </div>

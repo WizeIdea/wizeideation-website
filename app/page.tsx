@@ -29,9 +29,6 @@ const Home: FC = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-primary text-burntOchre drop-shadow-lg mb-3">
                 Wize Ideation
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-dpmOlive font-serif-body max-w-2xl text-center">
-                Strategic AI Architecture for Authorship Provenance and Integrity
-              </p>
             </div>
             
             {/* Buttons near bottom */}
@@ -52,8 +49,15 @@ const Home: FC = () => {
         </div>
       </section>
 
+      {/* Tagline */}
+      <section className="max-w-4xl mx-auto mt-4">
+        <h2 className="text-xl sm:text-2xl font-serif-primary text-burntOchre text-center mb-3">
+          Strategic AI Architecture for Authorship Provenance and Integrity
+        </h2>
+      </section>
+
       {/* Value Proposition */}
-      <section className="max-w-4xl mx-auto mt-8 mb-8">
+      <section className="max-w-4xl mx-auto mb-8">
         <p className="text-lg text-center mb-8 text-striationCharcoal font-serif-body leading-relaxed">
           Wize Ideation is an independent consulting and research practice operating at the intersection of artificial intelligence, systems architecture, and human authorship.
         </p>
