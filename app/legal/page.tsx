@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Legal Notice & Terms of Use',
@@ -45,6 +46,11 @@ export default function LegalPage() {
         6. Jurisdiction
       </h2>
       <p className="mb-4 leading-relaxed text-striationCharcoal">This website and any use of its content are governed by the laws of Australia. Any disputes arising in connection with this site are subject to the exclusive jurisdiction of Australian courts.</p>
+
+      <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mt-8 mb-4 pb-2 border-b-2 border-burntOchre">
+        Contact
+      </h2>
+      <p className="mb-4 leading-relaxed text-striationCharcoal">For professional inquiries: <Link href="/contact">Contact Wize Ideation</Link></p>
     </section>
   );
 }

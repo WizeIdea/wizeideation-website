@@ -1,5 +1,6 @@
 import './globals.css';
 import NavMenu from '@/components/NavMenu';
+import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 import { Libre_Baskerville, IBM_Plex_Serif, JetBrains_Mono, Inter } from 'next/font/google';
 
@@ -67,7 +68,7 @@ const RootLayout: FC<Props> = ({ children }) => {
         <NavMenu />
         <main className="max-w-7xl mx-auto py-8 px-4">{children}</main>
         <footer className="pt-1 pb-2 text-center text-sm text-dpmOlive">
-          © {new Date().getFullYear()} Wize Ideation. All rights reserved.
+          <Link href="/legal">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
         </footer>
       </body>
     </html>

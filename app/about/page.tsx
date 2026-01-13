@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'About Wize Ideation',
@@ -17,7 +19,15 @@ export default function AboutPage() {
       <p className="mb-4 leading-relaxed text-striationCharcoal">Wize Ideation operates independently and does not retain client data or content. Advisory work centres on architectural design and technical analysis, with implementation and operational decisions remaining within the client's own governance frameworks.</p>
       <p className="mb-4 leading-relaxed text-striationCharcoal">The consultancy is led by an independent principal with over two decades of experience across technical infrastructure and institutional advisory roles. Current research focuses on attribution integrity and the structural implications of alignment methodologies in large-scale AI systems, with ongoing publications released through the practice's research notes.</p>
       <p className="mb-4 leading-relaxed text-striationCharcoal">Our work exists to ensure that as machines become more capable, human authorship remains legible, attributable, and intact.</p>
-      <p className="mb-4 leading-relaxed"><a href="/legal" className="text-burntOchre hover:underline">Legal Notice & Terms of Use</a></p>
+
+      <div className="flex justify-between items-center mt-8">
+        <Link href="/legal">
+          <Button variant="secondary">Legal Notice & Terms of Use</Button>
+        </Link>
+        <Link href="/contact">
+          <Button variant="secondary">Contact Us</Button>
+        </Link>
+      </div>
     </section>
   );
 }
