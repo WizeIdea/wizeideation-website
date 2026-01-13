@@ -29,6 +29,7 @@ export default function ServicesPage() {
 
       {/* Service 1: Applied Technical Research */}
       <Accordion
+        id="service-1"
         title="1. Applied Technical Research & Forensic Auditing"
         summary="Independent research and forensic analysis to assess system behaviour, attribution reliability, and linguistic patterns in machine-mediated environments."
         imageName="logo_s.png"
@@ -48,6 +49,7 @@ export default function ServicesPage() {
 
       {/* Service 2: Forensic Stylometry */}
       <Accordion
+        id="service-2"
         title="2. Forensic Stylometry & Identity Architecture"
         summary="Specialised design of logic frameworks and pattern models to support high-fidelity authorial alignment for voice consistency and auditability."
         imageName="logo_y.png"
@@ -66,6 +68,7 @@ export default function ServicesPage() {
 
       {/* Service 3: AI Architecture Advisory */}
       <Accordion
+        id="service-3"
         title="3. AI Architecture & Reference Implementations"
         summary="Structured advisory for the design and integration of deterministic, audit-ready AI systems with guidance and reference code."
         imageName="logo_p.png"
@@ -85,6 +88,7 @@ export default function ServicesPage() {
 
       {/* Service 4: Structured Prompt Architecture */}
       <Accordion
+        id="service-4"
         title="4. Structured Prompt Architecture & Design"
         summary="Structured services for prompt engineering ensuring foundational interactions with AI systems are built with precision and intent."
         imageName="logo_o.png"

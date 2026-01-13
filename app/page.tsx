@@ -22,36 +22,18 @@ const Home: FC = () => {
             priority
             className="object-cover"
           />
-          {/* Overlay with content positioned near top and bottom */}
-          <div className="absolute inset-0 flex flex-col justify-between px-4">
-            {/* Text near top */}
-            <div className="flex flex-col items-center justify-start pt-10">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-primary text-burntOchre drop-shadow-lg mb-3">
-                Wize Ideation
-              </h1>
-            </div>
-            
-            {/* Buttons near bottom */}
-            <div className="flex items-end justify-center pb-10">
-              <div className="flex gap-3 sm:gap-4 flex-wrap justify-center">
-                <Link href="/papers">
-                  <Button variant="primary">View Research</Button>
-                </Link>
-                <Link href="/about">
-                  <Button variant="primary">Learn More</Button>
-                </Link>
-                <Link href="/services">
-                  <Button variant="primary">Services</Button>
-                </Link>
-              </div>
-            </div>
+          {/* Overlay with centered content */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-primary text-burntOchre drop-shadow-lg" style={{ marginTop: '-70pt' }}>
+              Wize Ideation
+            </h1>
           </div>
         </div>
       </section>
 
       {/* Tagline */}
       <section className="max-w-4xl mx-auto mt-4">
-        <h2 className="text-xl sm:text-2xl font-serif-primary text-burntOchre text-center mb-3">
+        <h2 className="text-xl sm:text-2xl font-serif-primary text-dpmOlive text-center mb-3">
           Strategic AI Architecture for Authorship Provenance and Integrity
         </h2>
       </section>
@@ -64,24 +46,33 @@ const Home: FC = () => {
 
         {/* Three Pillars */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre transition-colors">
-            <h3 className="font-serif-primary text-dpmOlive text-xl font-bold mb-3">Forensic Stylometry</h3>
-            <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed">
-              Attribution analysis and linguistic fingerprinting for AI-generated and human-authored content.
-            </p>
-          </div>
-          <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre transition-colors">
-            <h3 className="font-serif-primary text-dpmOlive text-xl font-bold mb-3">Attribution Integrity</h3>
-            <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed">
-              Designing systems that preserve authorship clarity and institutional accountability.
-            </p>
-          </div>
-          <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre transition-colors">
-            <h3 className="font-serif-primary text-dpmOlive text-xl font-bold mb-3">Auditable AI Systems</h3>
-            <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed">
-              Architectural design for authorship integrity across complex institutional and regulated frameworks.
-            </p>
-          </div>
+          <Link href="/services#service-1" className="block">
+            <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
+              <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Attribution Integrity</h3>
+              <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
+                Designing systems that preserve authorship clarity and institutional accountability.
+              </p>
+              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+            </div>
+          </Link>
+          <Link href="/services#service-2" className="block">
+            <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
+              <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Forensic Stylometry</h3>
+              <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
+                Attribution analysis and linguistic fingerprinting for AI-generated and human-authored content.
+              </p>
+              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+            </div>
+          </Link>
+          <Link href="/services#service-3" className="block">
+            <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
+              <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Auditable AI Systems</h3>
+              <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
+                Architectural design for authorship integrity across complex institutional frameworks.
+              </p>
+              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -90,12 +81,14 @@ const Home: FC = () => {
         <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mb-6 pb-2 border-b-2 border-burntOchre">
           Latest Research
         </h2>
-        <p className="font-serif-body text-base text-striationCharcoal mb-6 leading-relaxed">
-          Technical research addressing stylometric alignment, foundational AI ethics, and the forensic preservation of human authorship.
-        </p>
-        <Link href="/papers">
-          <Button variant="secondary">View All Research</Button>
-        </Link>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p className="font-serif-body text-base text-striationCharcoal leading-relaxed flex-1">
+            Technical research addressing stylometric alignment, foundational AI ethics, and the forensic preservation of human authorship.
+          </p>
+          <Link href="/papers" className="flex-shrink-0">
+            <Button variant="secondary">View All Research</Button>
+          </Link>
+        </div>
       </section>
 
       {/* Trust Bar */}

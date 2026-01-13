@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, ReactNode } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 
 interface AccordionProps {
+  id?: string;
   title: string;
   summary: string;
   children: ReactNode;
@@ -11,11 +12,26 @@ interface AccordionProps {
   imageName?: string;
 }
 
-export function Accordion({ title, summary, children, defaultOpen = false, imageName }: AccordionProps) {
+export function Accordion({ id, title, summary, children, defaultOpen = false, imageName }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const accordionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Check if URL hash matches this accordion's ID
+    if (id && typeof window !== 'undefined') {
+      const hash = window.location.hash.slice(1); // Remove the # character
+      if (hash === id) {
+        setIsOpen(true);
+        // Scroll to accordion after a brief delay to ensure it's rendered
+        setTimeout(() => {
+          accordionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [id]);
 
   return (
-    <div className="border border-dpmOlive mb-6 transition-colors hover:border-burntOchre">
+    <div ref={accordionRef} id={id} className="border border-dpmOlive mb-6 transition-colors hover:border-burntOchre">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left p-6 flex items-start justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-dpmOlive focus:ring-offset-2"
