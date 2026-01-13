@@ -82,7 +82,7 @@ export default function ContactPage() {
         </div>
 
         {/* Netlify reCAPTCHA */}
-        <div data-netlify-recaptcha="true"></div>
+        <div data-netlify-recaptcha="true" suppressHydrationWarning></div>
 
         <button
           type="submit"
