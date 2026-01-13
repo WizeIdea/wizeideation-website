@@ -1,7 +1,7 @@
 ---
 title: "GenAI Governance Framework: Enterprise Implementation for Fortune 500 Financial Institution"
 date: "2025-06-15"
-publish: true
+publish: false
 DocumentType: "projects"
 excerpt: "A comprehensive GenAI governance framework implementation for a Fortune 500 financial institution, reducing compliance risks by 78% while increasing innovation velocity by 42%."
 ---

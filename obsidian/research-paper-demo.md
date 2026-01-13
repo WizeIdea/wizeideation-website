@@ -1,8 +1,9 @@
 ---
 title: "Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs"
 date: "2026-01-10"
-publish: true
+publish: false
 DocumentType: "papers"
+DocID: "WISN-WP-2026-01"
 Authors:
   - "Dr. Jane Doe, PhD"
   - "Prof. John Smith"

@@ -88,15 +88,28 @@ function copyPublished() {
 
     // Determine destination sub‑folder from the DocumentType front‑matter
     const docType: DocumentType = data.DocumentType?.toLowerCase();
-    if (!docType) continue; // ignore files without a proper type
+    if (!docType) {
+      console.error(`❌ ERROR: File ${path.basename(filePath)} has publish:true but missing DocumentType`);
+      console.error(`   Required frontmatter: DocumentType (must be "papers", "services", or "projects")`);
+      process.exit(1); // Fail the build
+    }
+
+    // Require DocID for all published documents
+    const docId = data.DocID;
+    if (!docId) {
+      console.error(`❌ ERROR: File ${path.basename(filePath)} has publish:true but missing DocID`);
+      console.error(`   Required frontmatter: DocID (e.g., "WISN-WP-2026-01")`);
+      process.exit(1); // Fail the build
+    }
 
     const destDir = path.join(DEST_ROOT, docType);
     ensureDir(destDir);
 
-    const fileName = path.basename(filePath);
+    const fileName = `${docId}.md`;
     const destPath = path.join(destDir, fileName);
     fs.copyFileSync(filePath, destPath);
-    console.log(`✔ Copied ${fileName} → ${docType}`);
+    
+    console.log(`✔ Copied ${path.basename(filePath)} → ${docType}/${fileName} (DocID: ${docId})`);
   }
 }
 
