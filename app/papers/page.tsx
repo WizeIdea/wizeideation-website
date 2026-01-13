@@ -21,9 +21,9 @@ export default async function PapersIndex() {
   return (
     <section
       aria-label="List of research papers"
-      className="prose lg:prose-xl max-w-none text-striation-charcoal"
+      className="max-w-4xl mx-auto"
     >
-      <h1 className="font-mono text-3xl text-striation-charcoal mb-8">
+      <h1 className="font-serif-primary text-dpmOlive text-3xl font-bold mt-8 mb-8 pb-2 border-b-2 border-burntOchre">
         Research Papers
       </h1>
 

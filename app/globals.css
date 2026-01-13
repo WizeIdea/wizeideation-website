@@ -9,3 +9,102 @@
   outline: 2px solid theme('colors.dpm-olive');
   outline-offset: 2px;
 }
+/* Enhanced Markdown Styling per Corporate Theme */
+@layer components {
+  /* Headings - Academic Authority with Libre Baskerville */
+  .enhanced-markdown h1,
+  .enhanced-markdown h2,
+  .enhanced-markdown h3,
+  .enhanced-markdown h4 {
+    @apply font-serif-primary text-dpmOlive;
+  }
+
+  .enhanced-markdown h1 {
+    @apply text-3xl font-bold mt-8 mb-4;
+    border-bottom: 2px solid theme('colors.burnt-ochre');
+    padding-bottom: 0.5rem;
+  }
+
+  .enhanced-markdown h2 {
+    @apply text-2xl font-bold mt-6 mb-3;
+    border-bottom: 2px solid theme('colors.burnt-ochre');
+    padding-bottom: 0.5rem;
+  }
+
+  .enhanced-markdown h3 {
+    @apply text-xl font-semibold mt-5 mb-2;
+  }
+
+  .enhanced-markdown h4 {
+    @apply text-lg font-semibold mt-4 mb-2;
+  }
+
+  /* Body text - Technical Precision with IBM Plex Serif */
+  .enhanced-markdown p {
+    @apply font-serif-body text-striationCharcoal mb-4 leading-relaxed;
+  }
+
+  /* Code blocks - JetBrains Mono with olive border */
+  .enhanced-markdown pre {
+    @apply bg-[#F5F5F5] border-l-4 border-dpmOlive p-4 my-4 overflow-x-auto;
+  }
+
+  .enhanced-markdown pre code {
+    @apply font-mono text-sm text-striationCharcoal;
+  }
+
+  /* Inline code */
+  .enhanced-markdown code:not(pre code) {
+    @apply font-mono text-sm bg-olive50 px-1.5 py-0.5 border border-dpmOlive;
+  }
+
+  /* Tables - Laboratory report style with zebra striping */
+  .enhanced-markdown table {
+    @apply w-full border-2 border-dpmOlive font-mono text-sm my-6;
+  }
+
+  .enhanced-markdown thead {
+    @apply bg-olive50;
+  }
+
+  .enhanced-markdown th {
+    @apply px-4 py-2 text-left border-b-2 border-dpmOlive font-semibold text-striationCharcoal;
+  }
+
+  .enhanced-markdown td {
+    @apply px-4 py-2 border-b border-dpmOlive text-striationCharcoal;
+  }
+
+  .enhanced-markdown tbody tr:nth-child(even) {
+    @apply bg-[#F5F5F5];
+  }
+
+  .enhanced-markdown tbody tr:hover {
+    @apply bg-burntOchre/10;
+  }
+
+  /* Lists */
+  .enhanced-markdown ul,
+  .enhanced-markdown ol {
+    @apply font-serif-body mb-4 ml-6;
+  }
+
+  .enhanced-markdown li {
+    @apply mb-2;
+  }
+
+  /* Links */
+  .enhanced-markdown a {
+    @apply text-burntOchre hover:underline;
+  }
+
+  /* Blockquotes */
+  .enhanced-markdown blockquote {
+    @apply border-l-4 border-burntOchre bg-olive50 p-4 my-4 italic;
+  }
+
+  /* Horizontal rules */
+  .enhanced-markdown hr {
+    @apply border-t-2 border-dpmOlive my-8;
+  }
+}

@@ -29,12 +29,12 @@ export const Button: FC<ButtonProps> = ({
   disabled = false,
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center px-4 py-2 font-mono text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2';
+    'inline-flex items-center justify-center px-4 py-2 font-mono text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-2';
 
   const variantStyles =
     variant === 'primary'
-      ? 'bg-burntOchre text-saltWhite hover:bg-burntOchre/90 focus-visible:ring-burntOchre'
-      : 'border border-dpmOlive text-dpmOlive bg-transparent hover:bg-dpmOlive/10 focus-visible:ring-burntOchre';
+      ? 'bg-burntOchre text-saltWhite hover:opacity-90 motion-safe:hover:translate-x-0.5 focus-visible:ring-burntOchre'
+      : 'border border-dpmOlive text-dpmOlive bg-transparent hover:bg-dpmOlive/10 motion-safe:hover:translate-x-0.5 focus-visible:ring-burntOchre';
 
   const disabledStyles = disabled
     ? 'opacity-50 cursor-not-allowed'

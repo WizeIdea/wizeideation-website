@@ -13,12 +13,18 @@ const config: Config = {
       colors: {
         // Primary background
         'salt-white': '#F8F9FA',
+        saltWhite: '#F8F9FA',
         // Primary accent
         'burnt-ochre': '#B7410E',
+        burntOchre: '#B7410E',
         // Secondary accent
         'dpm-olive': '#4B5320',
-        // Dark neutral for text / contrast
-        'striation-charcoal': '#2E2E2E',
+        dpmOlive: '#4B5320',
+        // Dark neutral for text / contrast (updated to #212529 for AAA compliance)
+        'striation-charcoal': '#212529',
+        striationCharcoal: '#212529',
+        // Light olive for backgrounds
+        olive50: '#F2F5EA',
       },
 
       // ---------- Thin divider ----------
@@ -48,8 +54,14 @@ const config: Config = {
 
       // ---------- Font ----------
       fontFamily: {
-        // Monospace for forensic data read‑outs
-        mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
+        // Primary serif for headings and section titles
+        'serif-primary': ['var(--font-serif-primary)', ...defaultTheme.fontFamily.serif],
+        // Secondary serif for long-form body copy
+        'serif-body': ['var(--font-serif-body)', ...defaultTheme.fontFamily.serif],
+        // Monospace for code, data tables, stylometric metadata
+        mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
+        // Utility sans-serif for buttons and UI elements
+        'sans-ui': ['var(--font-sans-ui)', ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -66,7 +78,7 @@ const config: Config = {
           borderRadius: theme('borderRadius.olive-sm'),
           padding: theme('spacing.4'),
           boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-          fontFamily: '"IBM Plex Mono", monospace',
+          fontFamily: 'var(--font-serif-body)',
           color: theme('colors.striation-charcoal'),
         },
       };

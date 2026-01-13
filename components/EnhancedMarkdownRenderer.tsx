@@ -44,7 +44,7 @@ const EnhancedMarkdownRenderer: React.FC<EnhancedMarkdownRendererProps> = ({ con
           mermaid.initialize({
             startOnLoad: false,
             theme: 'default',
-            fontFamily: '"IBM Plex Mono", monospace',
+            fontFamily: 'var(--font-mono)',
           });
 
           // Render each Mermaid diagram individually

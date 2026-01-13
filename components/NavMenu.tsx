@@ -31,7 +31,7 @@ const NavMenu: FC = () => {
   return (
     <nav
       aria-label="Primary"
-      className="bg-saltWhite border-b border-dpmOlive"
+      className="bg-saltWhite"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Brand / logo */}

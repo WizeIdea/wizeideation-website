@@ -16,7 +16,7 @@ const MermaidDiagram: React.FC<MermaidDiagramProps> = ({ chart, className = '' }
     mermaid.initialize({
       startOnLoad: false,
       theme: 'default',
-      fontFamily: '"IBM Plex Mono", monospace',
+      fontFamily: 'var(--font-mono)',
       flowchart: {
         useMaxWidth: true,
         htmlLabels: true,
