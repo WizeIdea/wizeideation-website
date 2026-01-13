@@ -56,6 +56,7 @@ const config: Config = {
 
   // ---------- Custom plugin for call‑out box ----------
   plugins: [
+    require('@tailwindcss/typography'),
     function ({ addComponents, theme }: any) {
       const callout = {
         '.callout': {
