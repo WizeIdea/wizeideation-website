@@ -19,6 +19,7 @@ export default function ContactPage() {
         name="contact"
         method="POST"
         data-netlify="true"
+        data-netlify-recaptcha="true"
         className="space-y-6"
       >
         <input type="hidden" name="form-name" value="contact" />
@@ -78,6 +79,9 @@ export default function ContactPage() {
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white resize-vertical"
           />
         </div>
+
+        {/* Netlify reCAPTCHA */}
+        <div data-netlify-recaptcha="true"></div>
 
         <button
           type="submit"

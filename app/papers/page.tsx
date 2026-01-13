@@ -16,7 +16,7 @@ export const metadata = {
 };
 
 export default async function PapersIndex() {
-  const papers = getAllPapers();
+  // const papers = getAllPapers();
 
   return (
     <section
@@ -27,8 +27,16 @@ export default async function PapersIndex() {
         Research Papers
       </h1>
 
+      <p className="font-serif-body text-striationCharcoal mb-4">
+        Coming Soon
+      </p>
+      
+      <p className="font-serif-body text-striationCharcoal">
+        Our research papers on forensic stylometry, AI persona architecture, and linguistic forensics are currently under peer review.
+      </p>
+
       {/* Render the dynamic list */}
-      <ResearchList items={papers} basePath="/papers" />
+      {/* <ResearchList items={papers} basePath="/papers" /> */}
     </section>
   );
 }
