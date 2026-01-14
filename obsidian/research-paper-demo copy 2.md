@@ -1,15 +1,14 @@
 ---
-title: "Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs"
-date: "2026-01-10"
+title: "Graph-Conditioned Diffusion Mechanisms for Multi-Modal Data Integration"
+date: "2026-03-01"
 publish: false
 Featured: true
 DocumentType: "papers"
-DocID: "TEST-WP-2025-01"
-Authors:
-  - "Dr. Jane Doe, PhD"
-ORCID: "0000-0002-1825-0097"
-DOI: "10.1234/forensic.stylometry.2026"
-excerpt: "This paper presents a novel forensic stylometry framework for detecting and aligning authorial noise in generative AI outputs, achieving 94.2% accuracy in attribution tasks across diverse linguistic domains."
+DocID: "TEST-WP-2026-03"
+Authors: ["Dr. Helena Suarez", "Dr. Patrick O'Neil", "Prof. Miriam Schultz"]
+ORCID: "0000-0004-2450-9912"
+DOI: "10.9012/graph.diffusion.2026"
+excerpt: "The paper proposes a graph-conditioned diffusion mechanism that unifies heterogeneous visual, textual, and numerical data into a multi-modal latent space, exhibiting improved generalization over standard fusion methods."
 ---
 
 # Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs

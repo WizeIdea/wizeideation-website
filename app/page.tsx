@@ -2,9 +2,13 @@ import Image from 'next/image';
 import { FC } from 'react';
 import Seo from '@/components/Seo';
 import { Button } from '@/components/ui/Button';
+import { FeaturedPaperCard } from '@/components/FeaturedPaperCard';
+import { getFeaturedPapers } from '@/lib/papers-data';
 import Link from 'next/link';
 
 const Home: FC = () => {
+  const featuredPapers = getFeaturedPapers(3);
+
   return (
     <>
       <Seo
@@ -23,19 +27,15 @@ const Home: FC = () => {
             className="object-cover"
           />
           {/* Overlay with centered content */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif-primary text-burntOchre drop-shadow-lg" style={{ marginTop: '-70pt' }}>
-              Wize Ideation
+          <div className="absolute inset-0 flex flex-col items-center px-4 py-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif-primary text-burntOchre drop-shadow-lg text-center">
+              Strategic AI Architecture
             </h1>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif-primary text-burntOchre drop-shadow-lg text-center mt-auto mb-auto" style={{ transform: 'translateY(-70px)' }}>
+              Authorship Provenance and Integrity
+            </h2>
           </div>
         </div>
-      </section>
-
-      {/* Tagline */}
-      <section className="max-w-4xl mx-auto mt-4">
-        <h2 className="text-xl sm:text-2xl font-serif-primary text-dpmOlive text-center mb-3">
-          Strategic AI Architecture for Authorship Provenance and Integrity
-        </h2>
       </section>
 
       {/* Value Proposition */}
@@ -76,18 +76,33 @@ const Home: FC = () => {
         </div>
       </section>
 
-      {/* Research Preview */}
+      {/* Featured Research */}
       <section className="max-w-4xl mx-auto mb-8">
-        <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mb-6 pb-2 border-b-2 border-burntOchre">
-          Latest Research
-        </h2>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <p className="font-serif-body text-base text-striationCharcoal leading-relaxed flex-1">
-            Technical research addressing stylometric alignment, foundational AI ethics, and the forensic preservation of human authorship.
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-2 border-b-2 border-burntOchre">
+          <h2 className="font-serif-primary text-burntOchre text-2xl font-bold">
+            Featured Research
+          </h2>
           <Link href="/papers" className="flex-shrink-0">
             <Button variant="secondary">View All Research</Button>
           </Link>
+        </div>
+        
+        <div className="space-y-4">
+          {featuredPapers.length > 0 ? (
+            featuredPapers.map((paper) => (
+              <FeaturedPaperCard
+                key={paper.slug}
+                slug={paper.slug}
+                title={paper.title}
+                excerpt={paper.excerpt}
+                DOI={paper.DOI}
+              />
+            ))
+          ) : (
+            <p className="font-serif-body text-base text-striationCharcoal leading-relaxed text-center py-8">
+              Technical research addressing stylometric alignment, foundational AI ethics, and the forensic preservation of human authorship.
+            </p>
+          )}
         </div>
       </section>
 
@@ -95,16 +110,19 @@ const Home: FC = () => {
       <section className="bg-olive50 border-y border-dpmOlive py-4 mb-1">
         <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-center">
           <div>
-            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">20+</div>
-            <div className="font-serif-body text-sm text-striationCharcoal">Years Experience</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold">
+              20+ Years Experience
+            </div>
           </div>
           <div>
-            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">Independent</div>
-            <div className="font-serif-body text-sm text-striationCharcoal">Principal Practice</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold">
+              Independent
+            </div>
           </div>
           <div>
-            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">Research-Backed</div>
-            <div className="font-serif-body text-sm text-striationCharcoal">Evidence-Based Methods</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold">
+              Research-Backed
+            </div>
           </div>
         </div>
       </section>

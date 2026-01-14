@@ -8,6 +8,22 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import matter from 'gray-matter'; // <-- default import (works with esModuleInterop)
+/**
+ * Whitelist of frontmatter fields to include in published files.
+ * Only these fields will be copied from Obsidian to the website.
+ * This prevents exposure of Obsidian-specific metadata like 'created' and 'updated'.
+ */
+const ALLOWED_FRONTMATTER_FIELDS = [
+    'title',
+    'date',
+    'publish',
+    'DocumentType',
+    'Authors',
+    'DocID',
+    'ORCID',
+    'DOI',
+    'featured'
+];
 // ---------------------------------------------------------------
 // Determine the source folder that actually contains markdown files.
 //   - CI: `obsidian/` (cloned Obsidian repo)
@@ -58,6 +74,18 @@ function getAllMdFiles(dir) {
     return files;
 }
 /**
+ * Filter frontmatter to only include whitelisted fields.
+ */
+function filterFrontmatter(data) {
+    const filtered = {};
+    for (const field of ALLOWED_FRONTMATTER_FIELDS) {
+        if (data[field] !== undefined) {
+            filtered[field] = data[field];
+        }
+    }
+    return filtered;
+}
+/**
  * Main copy routine – only copies files where `publish: true`.
  */
 function copyPublished() {
@@ -69,21 +97,41 @@ function copyPublished() {
     for (const filePath of allFiles) {
         console.log('Scanning:', filePath); // <-- debug line
         const raw = fs.readFileSync(filePath, 'utf8'); // plain UTF‑8 string
-        const { data } = matter(raw); // <-- works now
+        const { data, content } = matter(raw); // <-- extract both data and content
         console.log('  -> kept?', data.publish, data.DocumentType); // <-- debug line
         // Skip anything that isn’t explicitly published
         if (!data.publish)
             continue;
         // Determine destination sub‑folder from the DocumentType front‑matter
-        const docType = data.DocumentType?.toLowerCase();
-        if (!docType)
-            continue; // ignore files without a proper type
+        let docType;
+        if (data.DocumentType) {
+            // Handle both string and array (in case Obsidian dropdown creates array)
+            const rawType = Array.isArray(data.DocumentType) ? data.DocumentType[0] : data.DocumentType;
+            docType = rawType?.toLowerCase();
+        }
+        if (!docType) {
+            console.error(`❌ ERROR: File ${path.basename(filePath)} has publish:true but missing DocumentType`);
+            console.error(`   Required frontmatter: DocumentType (must be "papers", "services", or "projects")`);
+            process.exit(1); // Fail the build
+        }
+        // Require DocID for all published documents
+        const docId = data.DocID;
+        if (!docId) {
+            console.error(`❌ ERROR: File ${path.basename(filePath)} has publish:true but missing DocID`);
+            console.error(`   Required frontmatter: DocID (e.g., "WISN-WP-2026-01")`);
+            process.exit(1); // Fail the build
+        }
         const destDir = path.join(DEST_ROOT, docType);
         ensureDir(destDir);
-        const fileName = path.basename(filePath);
+        const fileName = `${docId}.md`;
         const destPath = path.join(destDir, fileName);
-        fs.copyFileSync(filePath, destPath);
-        console.log(`✔ Copied ${fileName} → ${docType}`);
+        // Filter frontmatter to only include whitelisted fields
+        const filteredData = filterFrontmatter(data);
+        // Reconstruct markdown with filtered frontmatter
+        const filteredMarkdown = matter.stringify(content, filteredData);
+        // Write filtered markdown to destination
+        fs.writeFileSync(destPath, filteredMarkdown, 'utf8');
+        console.log(`✔ Copied ${path.basename(filePath)} → ${docType}/${fileName} (DocID: ${docId})`);
     }
 }
 // Run when invoked directly (the GitHub Action will call the script)

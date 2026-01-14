@@ -12,6 +12,23 @@ import matter from 'gray-matter';   // <-- default import (works with esModuleIn
 
 type DocumentType = 'papers' | 'services' | 'projects';
 
+/**
+ * Whitelist of frontmatter fields to include in published files.
+ * Only these fields will be copied from Obsidian to the website.
+ * This prevents exposure of Obsidian-specific metadata like 'created' and 'updated'.
+ */
+const ALLOWED_FRONTMATTER_FIELDS = [
+  'title',
+  'date',
+  'publish',
+  'DocumentType',
+  'Authors',
+  'DocID',
+  'ORCID',
+  'DOI',
+  'featured'
+];
+
 // ---------------------------------------------------------------
 // Determine the source folder that actually contains markdown files.
 //   - CI: `obsidian/` (cloned Obsidian repo)
@@ -67,6 +84,19 @@ function getAllMdFiles(dir: string): string[] {
 }
 
 /**
+ * Filter frontmatter to only include whitelisted fields.
+ */
+function filterFrontmatter(data: any): any {
+  const filtered: any = {};
+  for (const field of ALLOWED_FRONTMATTER_FIELDS) {
+    if (data[field] !== undefined) {
+      filtered[field] = data[field];
+    }
+  }
+  return filtered;
+}
+
+/**
  * Main copy routine – only copies files where `publish: true`.
  */
 function copyPublished() {
@@ -80,14 +110,20 @@ function copyPublished() {
   for (const filePath of allFiles) {
     console.log('Scanning:', filePath);   // <-- debug line
     const raw = fs.readFileSync(filePath, 'utf8'); // plain UTF‑8 string
-    const { data } = matter(raw);                  // <-- works now
+    const { data, content } = matter(raw);         // <-- extract both data and content
     console.log('  -> kept?', data.publish, data.DocumentType); // <-- debug line
 
     // Skip anything that isn’t explicitly published
     if (!data.publish) continue;
 
     // Determine destination sub‑folder from the DocumentType front‑matter
-    const docType: DocumentType = data.DocumentType?.toLowerCase();
+    let docType: DocumentType | undefined;
+    if (data.DocumentType) {
+      // Handle both string and array (in case Obsidian dropdown creates array)
+      const rawType = Array.isArray(data.DocumentType) ? data.DocumentType[0] : data.DocumentType;
+      docType = rawType?.toLowerCase();
+    }
+    
     if (!docType) {
       console.error(`❌ ERROR: File ${path.basename(filePath)} has publish:true but missing DocumentType`);
       console.error(`   Required frontmatter: DocumentType (must be "papers", "services", or "projects")`);
@@ -107,7 +143,15 @@ function copyPublished() {
 
     const fileName = `${docId}.md`;
     const destPath = path.join(destDir, fileName);
-    fs.copyFileSync(filePath, destPath);
+    
+    // Filter frontmatter to only include whitelisted fields
+    const filteredData = filterFrontmatter(data);
+    
+    // Reconstruct markdown with filtered frontmatter
+    const filteredMarkdown = matter.stringify(content, filteredData);
+    
+    // Write filtered markdown to destination
+    fs.writeFileSync(destPath, filteredMarkdown, 'utf8');
     
     console.log(`✔ Copied ${path.basename(filePath)} → ${docType}/${fileName} (DocID: ${docId})`);
   }

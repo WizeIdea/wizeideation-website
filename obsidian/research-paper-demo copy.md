@@ -1,15 +1,15 @@
 ---
-title: "Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs"
-date: "2026-01-10"
+title: "Neural Lattice Compression: A Parametric Approach to High-Density Model Distillation"
+date: "2026-02-04"
 publish: false
 Featured: true
 DocumentType: "papers"
-DocID: "TEST-WP-2025-01"
+DocID: "TEST-WP-2025-02"
 Authors:
-  - "Dr. Jane Doe, PhD"
-ORCID: "0000-0002-1825-0097"
-DOI: "10.1234/forensic.stylometry.2026"
-excerpt: "This paper presents a novel forensic stylometry framework for detecting and aligning authorial noise in generative AI outputs, achieving 94.2% accuracy in attribution tasks across diverse linguistic domains."
+- "Dr. Elena Marquez"
+ORCID: "0000-0003-4512-7789"
+DOI: "10.1234/neural.lattice.2026"
+excerpt: "This study introduces a parametric lattice-based compression strategy that reduces large-scale neural models by up to 87% while preserving operational fidelity across multimodal inference tasks."
 ---
 
 # Forensic Stylometry: Aligning Authorial Noise in Generative AI Outputs

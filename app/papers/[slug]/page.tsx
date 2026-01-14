@@ -18,6 +18,20 @@ import { Metadata } from 'next';
 // during static generation, so we can safely use Node APIs.
 // -------------------------------------------------------------------
 
+// Default author information (used if not specified in frontmatter)
+const DEFAULT_AUTHOR = 'Scott, N.';
+const DEFAULT_ORCID = '0009-0001-5276-0613';
+
+/**
+ * Normalize date from gray-matter which can parse dates as Date objects or strings
+ */
+function normalizeDate(date: any): string {
+  if (!date) return '';
+  if (typeof date === 'string') return date;
+  if (date instanceof Date) return date.toISOString().split('T')[0];
+  return '';
+}
+
 type Props = {
   params: { slug: string };
 };
@@ -94,54 +108,48 @@ const PaperPage: FC<Props> = async ({ params }) => {
         </h1>
 
         {/* Metadata section - display available frontmatter properties */}
-        {(data.date || data.Authors || data.ORCID || data.DOI) && (
-          <div className="mb-6 space-y-1 sm:space-y-2 text-sm text-dpmOlive font-serif-body">
-            {data.date && (
-              <p><strong>Published:</strong> {typeof data.date === 'string' ? data.date : data.date.toISOString().split('T')[0]}</p>
-            )}
-            
-            {data.Authors && (
-              <p>
-                <strong>Authors:</strong>{' '}
-                {Array.isArray(data.Authors)
-                  ? data.Authors.join(', ')
-                  : data.Authors}
-              </p>
-            )}
-            
-            {data.ORCID && (
-              <p className="flex flex-wrap items-center gap-1 sm:gap-2">
-                <strong>ORCID:</strong>
-                <a
-                  href={`https://orcid.org/${data.ORCID}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-burntOchre hover:underline transition-colors inline-flex items-center gap-1"
-                >
-                  <svg width="16" height="16" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                    <path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/>
-                    <path fill="#FFF" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7C191.7 111.2 178 93 148 93h-23.7v79.4zM71.3 54.8c0 5.2-4.2 9.4-9.4 9.4s-9.4-4.2-9.4-9.4 4.2-9.4 9.4-9.4 9.4 4.2 9.4 9.4z"/>
-                  </svg>
-                  {data.ORCID}
-                </a>
-              </p>
-            )}
-            
-            {data.DOI && (
-              <p className="break-all">
-                <strong>DOI:</strong>{' '}
-                <a
-                  href={`https://doi.org/${data.DOI}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-burntOchre hover:underline transition-colors"
-                >
-                  {data.DOI}
-                </a>
-              </p>
-            )}
-          </div>
-        )}
+        <div className="mb-6 space-y-1 sm:space-y-2 text-sm text-dpmOlive font-serif-body">
+          {data.date && (
+            <p><strong>Published:</strong> {normalizeDate(data.date)}</p>
+          )}
+          
+          <p>
+            <strong>Authors:</strong>{' '}
+            {data.Authors 
+              ? (Array.isArray(data.Authors) ? data.Authors.join(', ') : data.Authors)
+              : DEFAULT_AUTHOR}
+          </p>
+          
+          <p className="flex flex-wrap items-center gap-1 sm:gap-2">
+            <strong>ORCID:</strong>
+            <a
+              href={`https://orcid.org/${data.ORCID || DEFAULT_ORCID}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-burntOchre hover:underline transition-colors inline-flex items-center gap-1"
+            >
+              <svg width="16" height="16" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                <path fill="#A6CE39" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128z"/>
+                <path fill="#FFF" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7C191.7 111.2 178 93 148 93h-23.7v79.4zM71.3 54.8c0 5.2-4.2 9.4-9.4 9.4s-9.4-4.2-9.4-9.4 4.2-9.4 9.4-9.4 9.4 4.2 9.4 9.4z"/>
+              </svg>
+              {data.ORCID || DEFAULT_ORCID}
+            </a>
+          </p>
+          
+          {data.DOI && (
+            <p className="break-all">
+              <strong>DOI:</strong>{' '}
+              <a
+                href={`https://doi.org/${data.DOI}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-burntOchre hover:underline transition-colors"
+              >
+                {data.DOI}
+              </a>
+            </p>
+          )}
+        </div>
 
         {/* Legal disclaimer */}
         <div className="my-6 sm:my-8 p-4 sm:p-6 bg-saltWhite border-l-4 border-burntOchre">
