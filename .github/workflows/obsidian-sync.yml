@@ -4,9 +4,7 @@ on:
   workflow_dispatch:            # manual trigger
   push:
     branches:
-      - main                    # or whatever default branch you use
-    paths:
-      - '.github/workflows/**'  # re‑run if the workflow changes
+      - main                    # trigger on any push to main
 
 
 # .github/workflows/obsidian-sync.yml  (only the relevant part shown)
