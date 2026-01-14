@@ -40,11 +40,20 @@ jobs:
       - name: Copy selected markdown
         run: npm run copy-md
 
-      # 6️⃣ Build the static site (Next.js will read the newly‑copied markdown)
+      # 6️⃣ **Commit published papers to website repo for archival**
+      - name: Commit published papers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/papers/*.md content/services/*.md content/projects/*.md 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Archive published papers from Obsidian [skip ci]"
+          git push
+
+      # 7️⃣ Build the static site (Next.js will read the newly‑copied markdown)
       - name: Build static site
         run: npm run build
 
-      # 7️⃣ Deploy to Cloudflare Pages
+      # 8️⃣ Deploy to Cloudflare Pages
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
