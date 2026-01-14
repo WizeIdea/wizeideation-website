@@ -7,7 +7,6 @@ export default function ContactForm() {
       method="POST"
       action="/contact"
       data-netlify="true"
-      data-netlify-recaptcha="true"
       className="space-y-6"
     >
       <input type="hidden" name="form-name" value="contact" />
@@ -68,8 +67,8 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Netlify reCAPTCHA */}
-      <div data-netlify-recaptcha="true"></div>
+      {/* Netlify reCAPTCHA - rendered by Netlify via hidden form */}
+      <div id="netlify-recaptcha"></div>
 
       <button
         type="submit"
