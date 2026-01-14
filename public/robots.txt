@@ -1,6 +1,11 @@
+# Block Cloudflare infrastructure URL
+User-agent: *
+Disallow: http://wize-idea.workers.dev/
+Disallow: https://wize-idea.workers.dev/
+
 # *
 User-agent: *
-Allow: /
+Disallow: /admin/*
 
 # Host
 Host: https://wizeidea.com
