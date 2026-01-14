@@ -97,7 +97,7 @@ const PaperPage: FC<Props> = async ({ params }) => {
         {(data.date || data.Authors || data.ORCID || data.DOI) && (
           <div className="mb-6 space-y-1 sm:space-y-2 text-sm text-dpmOlive font-serif-body">
             {data.date && (
-              <p><strong>Published:</strong> {data.date}</p>
+              <p><strong>Published:</strong> {typeof data.date === 'string' ? data.date : data.date.toISOString().split('T')[0]}</p>
             )}
             
             {data.Authors && (
