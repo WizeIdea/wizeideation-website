@@ -95,15 +95,15 @@ const Home: FC = () => {
       <section className="bg-olive50 border-y border-dpmOlive py-4 mb-1">
         <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-center">
           <div>
-            <div className="font-serif-primary text-3xl text-burntOchre font-bold mb-2">20+</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">20+</div>
             <div className="font-serif-body text-sm text-striationCharcoal">Years Experience</div>
           </div>
           <div>
-            <div className="font-serif-primary text-3xl text-burntOchre font-bold mb-2">Independent</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">Independent</div>
             <div className="font-serif-body text-sm text-striationCharcoal">Principal Practice</div>
           </div>
           <div>
-            <div className="font-serif-primary text-3xl text-burntOchre font-bold mb-2">Research-Backed</div>
+            <div className="font-serif-primary text-xl text-burntOchre font-bold mb-2">Research-Backed</div>
             <div className="font-serif-body text-sm text-striationCharcoal">Evidence-Based Methods</div>
           </div>
         </div>
