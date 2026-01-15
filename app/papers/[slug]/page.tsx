@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: pageTitle,
         description: pageDescription,
-        url: `https://wizeidea.com/papers/${paramsResolved.slug}`,
+        url: `https://wizeidea.com/papers/${paramsResolved.slug}/`,
         siteName: 'Wize Ideation',
         type: 'article',
         ...(data.date && { publishedTime: normalizeDate(data.date) }),

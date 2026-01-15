@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: pageTitle,
         description: pageDescription,
-        url: `https://wizeidea.com/services/${paramsResolved.slug}`,
+        url: `https://wizeidea.com/services/${paramsResolved.slug}/`,
         siteName: 'Wize Ideation',
         type: 'website',
       },

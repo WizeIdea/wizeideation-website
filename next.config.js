@@ -2,8 +2,10 @@
 const nextConfig = {
   // Keep React strict mode (good forensic practice)
   reactStrictMode: true,
-  // Static export for Netlify deployment
+  // Static export for AWS deployment
   output: 'export',
+  // Use trailing slashes for clean URLs with S3
+  trailingSlash: true,
   // Turn off Next‑image optimisation – we export static files
   images: {
     unoptimized: true,

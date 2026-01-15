@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Legal Notice & Terms of Use | Wize Ideation',
     description: 'Legal framework and terms of use for research publications and technical advisory services.',
-    url: 'https://wizeidea.com/legal',
+    url: 'https://wizeidea.com/legal/',
     siteName: 'Wize Ideation',
     type: 'website',
   },

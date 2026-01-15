@@ -7,7 +7,7 @@ export const metadata = {
   openGraph: {
     title: 'Research Papers | Wize Ideation',
     description: 'Technical research papers on AI system design, authorship provenance, stylometric alignment, and auditable communication architectures.',
-    url: 'https://wizeidea.com/papers',
+    url: 'https://wizeidea.com/papers/',
     siteName: 'Wize Ideation',
     type: 'website',
   },

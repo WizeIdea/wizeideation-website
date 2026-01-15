@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Wize Ideation',
     description: 'Get in touch for technical advisory services, research collaboration, or engagement inquiries.',
-    url: 'https://wizeidea.com/contact',
+    url: 'https://wizeidea.com/contact/',
     siteName: 'Wize Ideation',
     type: 'website',
   },

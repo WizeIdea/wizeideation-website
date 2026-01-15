@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Advisory Services | Wize Ideation',
     description: 'Specialised research and technical advisory focused on AI system design, authorship analysis, and auditable communication architectures.',
-    url: 'https://wizeidea.com/services',
+    url: 'https://wizeidea.com/services/',
     siteName: 'Wize Ideation',
     type: 'website',
   },
