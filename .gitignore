@@ -40,3 +40,8 @@ dist/
 
 # obsidian vault (cloned for local testing only)
 # obsidian/
+
+# generated sitemaps (regenerated on each build)
+public/sitemap.xml
+public/sitemap-*.xml
+public/robots.txt

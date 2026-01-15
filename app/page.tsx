@@ -31,7 +31,7 @@ const Home: FC = () => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif-primary text-burntOchre drop-shadow-lg text-center">
               Strategic AI Architecture
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif-primary text-burntOchre drop-shadow-lg text-center md:mb-auto" style={{ transform: 'translateY(-70px)' }}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif-primary text-burntOchre drop-shadow-lg text-center md:absolute md:top-1/2 md:-translate-y-[calc(50%+50px)]">
               Authorship Provenance and Integrity
             </h2>
           </div>
