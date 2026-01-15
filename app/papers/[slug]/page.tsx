@@ -60,10 +60,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const raw = await fs.readFile(filePath, 'utf8');
     const { data } = matter(raw);
+    const pageTitle = data.title;
+    const pageDescription = data.excerpt ?? data.title;
+    const authors = data.Authors ? (Array.isArray(data.Authors) ? data.Authors : [data.Authors]) : undefined;
     return {
-      title: data.title,
-      description: data.excerpt ?? data.title,
-      authors: data.Authors ? [data.Authors] : undefined,
+      title: pageTitle,
+      description: pageDescription,
+      authors: authors,
+      openGraph: {
+        title: pageTitle,
+        description: pageDescription,
+        url: `https://wizeidea.com/papers/${paramsResolved.slug}`,
+        siteName: 'Wize Ideation',
+        type: 'article',
+        ...(data.date && { publishedTime: normalizeDate(data.date) }),
+        ...(authors && { authors: authors }),
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+        },
+      },
     };
   } catch {
     return {

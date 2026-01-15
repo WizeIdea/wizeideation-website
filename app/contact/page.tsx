@@ -1,8 +1,23 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Wize Ideation',
-  description: 'Get in touch with Wize Ideation for research, services, or administrative inquiries',
+  title: 'Contact | Wize Ideation - Inquiries & Advisory Engagement',
+  description: 'Contact independent AI architecture consultancy for research inquiries, technical advisory services, or engagement discussions. Principal-led consultancy practice.',
+  openGraph: {
+    title: 'Contact Wize Ideation',
+    description: 'Get in touch for technical advisory services, research collaboration, or engagement inquiries.',
+    url: 'https://wizeidea.com/contact',
+    siteName: 'Wize Ideation',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function ContactPage() {

@@ -27,11 +27,11 @@ const Home: FC = () => {
             className="object-cover"
           />
           {/* Overlay with centered content */}
-          <div className="absolute inset-0 flex flex-col items-center px-4 py-6">
+          <div className="absolute inset-0 flex flex-col justify-between items-center px-4 py-6">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif-primary text-burntOchre drop-shadow-lg text-center">
               Strategic AI Architecture
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif-primary text-burntOchre drop-shadow-lg text-center mt-auto mb-auto" style={{ transform: 'translateY(-70px)' }}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif-primary text-burntOchre drop-shadow-lg text-center md:mb-auto" style={{ transform: 'translateY(-70px)' }}>
               Authorship Provenance and Integrity
             </h2>
           </div>

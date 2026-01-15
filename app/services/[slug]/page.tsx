@@ -46,9 +46,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const raw = await fs.readFile(filePath, 'utf8');
     const { data } = matter(raw);
+    const pageTitle = `${data.title} | Wize Ideation`;
+    const pageDescription = data.excerpt ?? `Independent technical advisory service: ${data.title}. Specialised research and architectural analysis for AI systems and authorship integrity.`;
     return {
-      title: data.title,
-      description: data.excerpt ?? data.title,
+      title: pageTitle,
+      description: pageDescription,
+      openGraph: {
+        title: pageTitle,
+        description: pageDescription,
+        url: `https://wizeidea.com/services/${paramsResolved.slug}`,
+        siteName: 'Wize Ideation',
+        type: 'website',
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+        },
+      },
     };
   } catch {
     return {

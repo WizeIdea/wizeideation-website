@@ -1,4 +1,4 @@
-name: Sync Obsidian → Wize Ideation → Cloudflare Pages
+name: Sync Obsidian → Wize Ideation → AWS
 
 on:
   workflow_dispatch:            # manual trigger
@@ -55,9 +55,34 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      # 8️⃣ Deploy to Cloudflare Pages
-      - name: Deploy to Cloudflare Pages
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx wrangler pages deploy out --project-name=wizeideation
+      # 8️⃣ Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 9️⃣ Deploy static site to S3
+      - name: Deploy static site to S3
+        run: |
+          # Cache immutable assets aggressively
+          aws s3 sync out s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "index.html" \
+            --exclude "404.html"
+
+          # Ensure HTML is always fresh
+          aws s3 sync out s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --include "index.html" \
+            --include "404.html"
+
+      # 🔟 Invalidate CloudFront cache
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"

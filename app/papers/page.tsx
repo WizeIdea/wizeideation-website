@@ -2,16 +2,22 @@ import { getAllPapers } from '@/lib/papers-data';
 import { ResearchList } from '@/components/ResearchList';
 
 export const metadata = {
-  title: 'Research Papers – Wize Ideation',
-  description:
-    'A curated repository of forensic stylometric research papers authored by Wize Ideation. Explore authoritative analyses on AI persona architecture and linguistic forensics.',
+  title: 'Research Papers | Wize Ideation - AI Architecture & Authorship Analysis',
+  description: 'Independent research publications on AI systems, authorship integrity, forensic stylometry, and linguistic pattern analysis. Peer-reviewed technical papers with DOI attribution.',
   openGraph: {
-    title: 'Research Papers – Wize Ideation',
-    description:
-      'Explore our forensic-styled research papers on stylometric alignment, AI persona architecture, and forensic linguistics.',
-    type: 'website',
+    title: 'Research Papers | Wize Ideation',
+    description: 'Technical research papers on AI system design, authorship provenance, stylometric alignment, and auditable communication architectures.',
     url: 'https://wizeidea.com/papers',
-    images: [{ url: 'https://wizeidea.com/og-image-papers.png' }],
+    siteName: 'Wize Ideation',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 

@@ -2,8 +2,23 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Legal Notice & Terms of Use',
-  description: 'Legal terms and conditions for Wize Ideation services',
+  title: 'Legal Notice & Terms | Wize Ideation - Advisory Service Terms',
+  description: 'Legal terms, conditions, and governance framework for independent advisory services. Intellectual property, liability limitations, and engagement terms.',
+  openGraph: {
+    title: 'Legal Notice & Terms of Use | Wize Ideation',
+    description: 'Legal framework and terms of use for research publications and technical advisory services.',
+    url: 'https://wizeidea.com/legal',
+    siteName: 'Wize Ideation',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function LegalPage() {

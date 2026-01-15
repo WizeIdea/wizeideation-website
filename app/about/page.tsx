@@ -4,8 +4,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'About Wize Ideation',
-  description: 'Mission, team, and background',
+  title: 'About | Wize Ideation - Independent AI Research & Advisory Practice',
+  description: 'Independent technical consultancy specialising in AI architecture research, authorship integrity systems, and forensic linguistic analysis. Principal-led advisory services.',
+  openGraph: {
+    title: 'About Wize Ideation',
+    description: 'Independent research practice focused on AI system design, authorship provenance, and technical advisory for complex institutional frameworks.',
+    url: 'https://wizeidea.com/about',
+    siteName: 'Wize Ideation',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function AboutPage() {

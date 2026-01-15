@@ -8,8 +8,23 @@ import { ServiceDivider } from '@/components/ui/ServiceDivider';
 import { Accordion } from '@/components/ui/Accordion';
 
 export const metadata: Metadata = {
-  title: 'Advisory Services | Wize Ideation',
-  description: 'Independent advisory, technical research, and architectural specifications for organisations navigating AI, human authorship, and institutional risk.',
+  title: 'Advisory Services | Wize Ideation - AI Architecture & Research Consultancy',
+  description: 'Independent technical consultancy providing research, architectural analysis, and advisory services for AI systems, authorship integrity, and forensic stylometry.',
+  openGraph: {
+    title: 'Advisory Services | Wize Ideation',
+    description: 'Specialised research and technical advisory focused on AI system design, authorship analysis, and auditable communication architectures.',
+    url: 'https://wizeidea.com/services',
+    siteName: 'Wize Ideation',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function ServicesPage() {
