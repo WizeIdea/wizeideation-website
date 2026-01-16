@@ -117,6 +117,8 @@ export default function ContactForm() {
             required
             disabled={isSubmitting}
             autoComplete="email"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            title="Please enter a valid email address (e.g., user@example.com)"
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white disabled:opacity-50"
           />
         </div>
