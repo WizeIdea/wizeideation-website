@@ -9,10 +9,11 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget; // Store reference before async
     setIsSubmitting(true);
     setStatus('idle');
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     
     // Prepare submission data
     const submissionData = {
@@ -38,7 +39,7 @@ export default function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        e.currentTarget.reset();
+        form.reset(); // Use stored reference
         setEnquiryType('');
       } else {
         const data = await response.json();
