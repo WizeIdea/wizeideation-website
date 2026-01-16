@@ -33,14 +33,20 @@ export default function ContactForm() {
         body: JSON.stringify(submissionData),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
       if (response.ok) {
         setStatus('success');
         e.currentTarget.reset();
         setEnquiryType('');
       } else {
-        throw new Error('Submission failed');
+        const data = await response.json();
+        console.error('Form error:', data);
+        setStatus('error');
       }
     } catch (error) {
+      console.error('Fetch error:', error);
       setStatus('error');
     } finally {
       setIsSubmitting(false);
