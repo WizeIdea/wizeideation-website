@@ -14,6 +14,9 @@ const config: Config = {
         // Primary background
         'salt-white': '#F8F9FA',
         saltWhite: '#F8F9FA',
+        // Light grey for header/footer
+        'light-smoke': '#F5F5F5',
+        lightSmoke: '#F5F5F5',
         // Primary accent
         'burnt-ochre': '#B7410E',
         burntOchre: '#B7410E',

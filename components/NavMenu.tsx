@@ -31,14 +31,13 @@ const NavMenu: FC = () => {
   return (
     <nav
       aria-label="Primary"
-      className="bg-saltWhite"
+      className="bg-lightSmoke"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div className="max-w-4xl mx-auto flex items-center justify-between h-16">
         {/* Brand / logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Wize Ideation logo" className="h-8 w-auto" />
+        <Link href="/" className="flex items-center">
           <span className="text-striationCharcoal font-serif-primary text-xl">
-            Wize Ideation
+            Wize Idea
           </span>
         </Link>
 

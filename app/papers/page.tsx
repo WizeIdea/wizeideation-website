@@ -2,13 +2,13 @@ import { getAllPapers } from '@/lib/papers-data';
 import { ResearchList } from '@/components/ResearchList';
 
 export const metadata = {
-  title: 'Research Papers | Wize Ideation - AI Architecture & Authorship Analysis',
+  title: 'Research Papers | Wize Idea - AI Architecture & Authorship Analysis',
   description: 'Independent research publications on AI systems, authorship integrity, forensic stylometry, and linguistic pattern analysis. Peer-reviewed technical papers with DOI attribution.',
   openGraph: {
-    title: 'Research Papers | Wize Ideation',
+    title: 'Research Papers | Wize Idea',
     description: 'Technical research papers on AI system design, authorship provenance, stylometric alignment, and auditable communication architectures.',
     url: 'https://wizeidea.com/papers/',
-    siteName: 'Wize Ideation',
+    siteName: 'Wize Idea',
     type: 'website',
   },
   robots: {

@@ -8,13 +8,13 @@ import { ServiceDivider } from '@/components/ui/ServiceDivider';
 import { Accordion } from '@/components/ui/Accordion';
 
 export const metadata: Metadata = {
-  title: 'Advisory Services | Wize Ideation - AI Architecture & Research Consultancy',
+  title: 'Advisory Services | Wize Idea - AI Architecture & Research Consultancy',
   description: 'Independent technical consultancy providing research, architectural analysis, and advisory services for AI systems, authorship integrity, and forensic stylometry.',
   openGraph: {
-    title: 'Advisory Services | Wize Ideation',
+    title: 'Advisory Services | Wize Idea',
     description: 'Specialised research and technical advisory focused on AI system design, authorship analysis, and auditable communication architectures.',
     url: 'https://wizeidea.com/services/',
-    siteName: 'Wize Ideation',
+    siteName: 'Wize Idea',
     type: 'website',
   },
   robots: {
@@ -35,7 +35,7 @@ export default function ServicesPage() {
       </h1>
       
       <p className="mb-4 leading-relaxed text-striationCharcoal">
-        Wize Ideation provides independent advisory, technical research, and architectural specifications for organisations navigating the intersection of artificial intelligence, human authorship, and institutional risk.
+        Wize Idea provides independent advisory, technical research, and architectural specifications for organisations navigating the intersection of artificial intelligence, human authorship, and institutional risk.
       </p>
       
       <p className="mb-8 leading-relaxed text-striationCharcoal">
@@ -132,7 +132,7 @@ export default function ServicesPage() {
               Independent Consultancy
             </h3>
             <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
-              Wize Ideation operates as an independent principal practice. Our deliverables are provided as discrete research findings, technical specifications, or advisory briefs. Nothing on this page should be construed as a warranty or guarantee of specific outcomes.
+              Wize Idea operates as an independent principal practice. Our deliverables are provided as discrete research findings, technical specifications, or advisory briefs. Nothing on this page should be construed as a warranty or guarantee of specific outcomes.
             </p>
           </div>
 

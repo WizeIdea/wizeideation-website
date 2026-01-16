@@ -18,7 +18,7 @@ export const FeaturedPaperCard: FC<FeaturedPaperCardProps> = ({
 }) => {
   return (
     <Link href={`/papers/${slug}`} className="block group">
-      <div className="border border-dpmOlive bg-[#F5F5F5] p-3 hover:border-burntOchre hover:shadow-md transition-all">
+      <div className="border border-dpmOlive bg-lightSmoke p-3 hover:border-burntOchre hover:shadow-md transition-all">
         {/* DOI Link */}
         {DOI && (
           <div className="mb-1">

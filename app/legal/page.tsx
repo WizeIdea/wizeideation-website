@@ -74,9 +74,10 @@ export default function LegalPage() {
       <p className="mb-8 leading-relaxed text-striationCharcoal">Client-specific work product is governed exclusively by the terms of the relevant engagement agreement.</p>
 
       <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mt-8 mb-4 pb-2 border-b border-dpmOlive">
-        8. Jurisdiction
+        8. Jurisdiction and Status
       </h2>
-      <p className="mb-8 leading-relaxed text-striationCharcoal">This website and any use of its content are governed by the laws of Australia. Any disputes arising in connection with this site are subject to the exclusive jurisdiction of Australian courts.</p>
+      <p className="mb-4 leading-relaxed text-striationCharcoal">This website and any use of its content are governed by the laws of Australia. Any disputes arising in connection with this site are subject to the exclusive jurisdiction of Australian courts.</p>
+      <p className="mb-8 leading-relaxed text-striationCharcoal">Wize Ideation is an independent consulting and research practice operated by Scott Nicholas T/A Wize Ideation (ABN 77 349 504 376). Services and publications are provided in a principal consulting capacity from Australia.</p>
 
       <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mt-8 mb-4 pb-2 border-b border-dpmOlive">
         Contact

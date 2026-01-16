@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: pageTitle,
         description: pageDescription,
         url: `https://wizeidea.com/papers/${paramsResolved.slug}/`,
-        siteName: 'Wize Ideation',
+        siteName: 'Wize Idea',
         type: 'article',
         ...(data.date && { publishedTime: normalizeDate(data.date) }),
         ...(authors && { authors: authors }),

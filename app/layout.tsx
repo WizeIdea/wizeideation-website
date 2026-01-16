@@ -35,8 +35,8 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'Wize Ideation – Tactical Intellectual Research',
-    template: '%s | Wize Ideation'
+    default: 'Wize Idea – Tactical Intellectual Research',
+    template: '%s | Wize Idea'
   },
   description:
     'A high‑end research archive for stylometric alignment, AI persona architecture, and forensic linguistics.',
@@ -67,8 +67,10 @@ const RootLayout: FC<Props> = ({ children }) => {
       <body className="bg-saltWhite text-striationCharcoal antialiased font-serif-body">
         <NavMenu />
         <main className="max-w-7xl mx-auto py-8 px-4">{children}</main>
-        <footer className="pt-1 pb-2 text-center text-sm text-dpmOlive">
-          <Link href="/legal">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
+        <footer className="bg-lightSmoke pt-3 pb-3">
+          <div className="max-w-4xl mx-auto text-center text-sm text-dpmOlive">
+            <Link href="/legal">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
+          </div>
         </footer>
       </body>
     </html>
