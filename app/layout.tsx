@@ -69,7 +69,7 @@ const RootLayout: FC<Props> = ({ children }) => {
         <main className="max-w-7xl mx-auto py-8 px-4">{children}</main>
         <footer className="bg-lightSmoke pt-3 pb-3">
           <div className="max-w-4xl mx-auto text-center text-sm text-dpmOlive">
-            <Link href="/legal">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
+            <Link href="/legal" className="hover:text-burntOchre transition-colors">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
           </div>
         </footer>
       </body>

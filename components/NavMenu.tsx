@@ -28,6 +28,14 @@ const NavMenu: FC = () => {
     { title: 'About', href: '/about' }
   ];
 
+  // Helper to check if current path matches item (handles trailing slashes)
+  const isActive = (itemHref: string) => {
+    const normalizedPathname = pathname.endsWith('/') && pathname !== '/' 
+      ? pathname.slice(0, -1) 
+      : pathname;
+    return normalizedPathname === itemHref;
+  };
+
   return (
     <nav
       aria-label="Primary"
@@ -36,7 +44,7 @@ const NavMenu: FC = () => {
       <div className="max-w-4xl mx-auto flex items-center justify-between h-16">
         {/* Brand / logo */}
         <Link href="/" className="flex items-center">
-          <span className="text-striationCharcoal font-serif-primary text-xl">
+          <span className="text-dpmOlive font-serif-primary text-xl">
             Wize Idea
           </span>
         </Link>
@@ -49,7 +57,7 @@ const NavMenu: FC = () => {
                 href={item.href}
                 className={clsx(
                   'font-sans-ui text-striationCharcoal hover:text-burntOchre transition-colors',
-                  pathname === item.href && 'underline underline-offset-4 decoration-dpmOlive'
+                  isActive(item.href) && 'underline underline-offset-4 decoration-dpmOlive'
                 )}
               >
                 {item.title}
@@ -96,7 +104,7 @@ const NavMenu: FC = () => {
                 href={item.href}
                 className={clsx(
                   'block px-4 py-2 font-sans-ui text-striationCharcoal hover:bg-dpmOlive hover:text-saltWhite',
-                  pathname === item.href && 'bg-dpmOlive text-saltWhite'
+                  isActive(item.href) && 'bg-dpmOlive text-saltWhite'
                 )}
                 onClick={() => setIsOpen(false)}
               >

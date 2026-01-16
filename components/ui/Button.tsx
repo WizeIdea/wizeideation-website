@@ -34,7 +34,7 @@ export const Button: FC<ButtonProps> = ({
   const variantStyles =
     variant === 'primary'
       ? 'bg-burntOchre text-saltWhite hover:opacity-90 motion-safe:hover:translate-x-0.5 focus-visible:ring-burntOchre'
-      : 'border border-dpmOlive text-dpmOlive bg-transparent hover:bg-dpmOlive/10 motion-safe:hover:translate-x-0.5 focus-visible:ring-burntOchre';
+      : 'border border-dpmOlive text-dpmOlive bg-transparent hover:shadow-md motion-safe:hover:translate-x-0.5 focus-visible:ring-burntOchre';
 
   const disabledStyles = disabled
     ? 'opacity-50 cursor-not-allowed'

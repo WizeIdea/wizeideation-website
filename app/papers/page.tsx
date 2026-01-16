@@ -29,7 +29,7 @@ export default async function PapersIndex() {
       aria-label="List of research papers"
       className="max-w-4xl mx-auto"
     >
-      <h1 className="font-serif-primary text-dpmOlive text-3xl font-bold mt-8 mb-8 pb-2 border-b-2 border-burntOchre">
+      <h1 className="font-serif-primary text-burntOchre text-xl font-semibold mt-3 mb-4 pb-2 border-b border-burntOchre">
         Research Papers
       </h1>
 

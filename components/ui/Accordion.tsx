@@ -38,7 +38,7 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
         aria-expanded={isOpen}
       >
         <div className="flex-1">
-          <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mb-2">
+          <h2 className="font-serif-primary text-dpmOlive text-xl font-semibold mb-2">
             {title}
           </h2>
           <p className="font-serif-body text-base text-striationCharcoal leading-relaxed">

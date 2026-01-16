@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <section className="max-w-4xl mx-auto font-serif-body text-base">
-      <h1 className="font-serif-primary text-dpmOlive text-3xl font-bold mt-8 mb-6 pb-2 border-b-2 border-burntOchre">
+      <h1 className="font-serif-primary text-burntOchre text-xl font-semibold mt-3 mb-4 pb-2 border-b border-burntOchre">
         Advisory Services & Technical Specifications
       </h1>
       
@@ -121,7 +121,7 @@ export default function ServicesPage() {
       </Accordion>
 
       {/* Engagement Governance */}
-      <h2 className="font-serif-primary text-dpmOlive text-2xl font-bold mt-12 mb-4 pb-2 border-b border-dpmOlive">
+      <h2 className="font-serif-primary text-dpmOlive text-xl font-semibold mt-12 mb-4 pb-2 border-b border-dpmOlive">
         Engagement Governance
       </h2>
 
@@ -137,7 +137,7 @@ export default function ServicesPage() {
           </div>
 
           <div>
-            <h3 className="font-serif-primary text-dpmOlive text-lg font-semibold mb-2">
+            <h3 className="font-serif-primary text-striationCharcoal text-base font-semibold mb-2">
               Governance Boundary
             </h3>
             <p className="leading-relaxed text-striationCharcoal font-mono text-xs">

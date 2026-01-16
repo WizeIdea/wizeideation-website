@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section className="max-w-4xl mx-auto font-serif-body text-base">
-      <h1 className="font-serif-primary text-dpmOlive text-3xl font-bold mt-8 mb-6 pb-2 border-b-2 border-burntOchre">
+      <h1 className="font-serif-primary text-burntOchre text-xl font-semibold mt-3 mb-4 pb-2 border-b border-burntOchre">
         About Wize Idea
       </h1>
       
@@ -52,7 +52,7 @@ export default function AboutPage() {
           <Button variant="secondary">Legal Notice & Terms of Use</Button>
         </Link>
         <Link href="/contact">
-          <Button variant="secondary">Contact Us</Button>
+          <Button variant="primary">Contact Us</Button>
         </Link>
       </div>
     </section>
