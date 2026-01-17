@@ -10,9 +10,13 @@ interface AccordionProps {
   children: ReactNode;
   defaultOpen?: boolean;
   imageName?: string;
+  className?: string;
+  headingLevel?: 'h2' | 'h3';
+  contentBgColor?: string;
+  bgColor?: string;
 }
 
-export function Accordion({ id, title, summary, children, defaultOpen = false, imageName }: AccordionProps) {
+export function Accordion({ id, title, summary, children, defaultOpen = false, imageName, className, headingLevel = 'h2', contentBgColor, bgColor }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const accordionRef = useRef<HTMLDivElement>(null);
 
@@ -31,19 +35,27 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
   }, [id]);
 
   return (
-    <div ref={accordionRef} id={id} className="border border-dpmOlive mb-6 transition-colors hover:border-burntOchre">
+    <div ref={accordionRef} id={id} className={`border border-dpmOlive mb-6 transition-colors hover:border-burntOchre ${bgColor || ''}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-left p-6 flex items-start justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-dpmOlive focus:ring-offset-2"
+        className={`w-full text-left p-6 flex ${summary ? 'items-start' : 'items-center'} justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-dpmOlive focus:ring-offset-2 ${className || ''}`}
         aria-expanded={isOpen}
       >
         <div className="flex-1">
-          <h2 className="font-serif-primary text-dpmOlive text-xl font-semibold mb-2">
-            {title}
-          </h2>
-          <p className="font-serif-body text-base text-striationCharcoal leading-relaxed">
-            {summary}
-          </p>
+          {headingLevel === 'h2' ? (
+            <h2 className={`font-serif-primary text-dpmOlive text-xl font-semibold ${summary ? 'mb-2' : ''}`}>
+              {title}
+            </h2>
+          ) : (
+            <h3 className={`font-serif-primary text-dpmOlive text-base font-semibold ${summary ? 'mb-2' : ''}`}>
+              {title}
+            </h3>
+          )}
+          {summary && (
+            <p className="font-serif-body text-base text-striationCharcoal leading-relaxed">
+              {summary}
+            </p>
+          )}
         </div>
         
         {imageName && (
@@ -78,7 +90,7 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
       </button>
       
       {isOpen && (
-        <div className="px-6 pb-6 border-t border-dpmOlive">
+        <div className={`px-6 pb-6 border-t border-dpmOlive ${contentBgColor || ''}`}>
           <div className="pt-6">
             {children}
           </div>

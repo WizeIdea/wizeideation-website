@@ -42,6 +42,12 @@ export default function ServicesPage() {
         Our services are scoped as discrete, high-impact deliverables. Engagements are structured around fixed-fee or milestone-based terms, with all work specified prior to commencement. The outcomes are framed as analysis, recommendations, and technical guidance—not operational software.
       </p>
 
+      <div className="flex justify-end mb-6">
+        <Link href="/contact">
+          <Button variant="primary">Discuss Your Requirements</Button>
+        </Link>
+      </div>
+
       {/* Service 1: Applied Technical Research */}
       <Accordion
         id="service-1"
@@ -58,8 +64,6 @@ export default function ServicesPage() {
         <Deliverable>
           <strong>Deliverable:</strong> A comprehensive technical research report with findings and analytical commentary.
         </Deliverable>
-
-        <ServiceDivider imageName="logo_s.png" />
       </Accordion>
 
       {/* Service 2: Forensic Stylometry */}
@@ -77,8 +81,6 @@ export default function ServicesPage() {
         <Deliverable>
           <strong>Deliverable:</strong> A detailed specification document containing models and integration notes.
         </Deliverable>
-
-        <ServiceDivider imageName="logo_y.png" />
       </Accordion>
 
       {/* Service 3: AI Architecture Advisory */}
@@ -97,8 +99,6 @@ export default function ServicesPage() {
         <Deliverable>
           <strong>Deliverable:</strong> Technical advisory briefs, integration guides, or reference assets.
         </Deliverable>
-
-        <ServiceDivider imageName="logo_p.png" />
       </Accordion>
 
       {/* Service 4: Structured Prompt Architecture */}
@@ -116,31 +116,36 @@ export default function ServicesPage() {
         <Deliverable>
           <strong>Deliverable:</strong> Prompt specification documents, test vectors, or logic diagrams.
         </Deliverable>
-
-        <ServiceDivider imageName="logo_o.png" />
       </Accordion>
 
-      {/* Engagement Governance */}
-      <h2 className="font-serif-primary text-dpmOlive text-xl font-semibold mt-12 mb-4 pb-2 border-b border-dpmOlive">
-        Engagement Governance
-      </h2>
+      {/* Horizontal line above Engagement Governance */}
+      <div className="border-b border-burntOchre mt-8 mb-6"></div>
 
-      <Card className="mb-8 p-6">
+      {/* Engagement Governance */}
+      <Accordion
+        id="engagement-governance"
+        title="Engagement Governance"
+        summary=""
+        className="!p-3"
+        headingLevel="h3"
+        contentBgColor="bg-lightSmoke"
+        bgColor="bg-lightSmoke"
+      >
         <div className="space-y-4">
           <div>
             <h3 className="font-serif-primary text-dpmOlive text-base font-semibold mb-2">
               Independent Consultancy
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
+            <p className="leading-relaxed text-striationCharcoal font-serif-body text-sm">
               Wize Idea operates as an independent principal practice. Our deliverables are provided as discrete research findings, technical specifications, or advisory briefs. Nothing on this page should be construed as a warranty or guarantee of specific outcomes.
             </p>
           </div>
 
           <div>
-            <h3 className="font-serif-primary text-striationCharcoal text-base font-semibold mb-2">
+            <h3 className="font-serif-primary text-dpmOlive text-base font-semibold mb-2">
               Governance Boundary
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
+            <p className="leading-relaxed text-striationCharcoal font-serif-body text-sm">
               Decisions regarding operational deployment, institutional adoption, and regulatory compliance are the exclusive responsibility of the client organisation. Our role is to inform those decisions, not make them.
             </p>
           </div>
@@ -149,18 +154,12 @@ export default function ServicesPage() {
             <h3 className="font-serif-primary text-dpmOlive text-base font-semibold mb-2">
               Data Handling
             </h3>
-            <p className="leading-relaxed text-striationCharcoal font-mono text-xs">
+            <p className="leading-relaxed text-striationCharcoal font-serif-body text-sm">
               We do not retain client data or content beyond what is necessary to fulfil agreed deliverables. All work is conducted under explicit human oversight.
             </p>
           </div>
         </div>
-      </Card>
-
-      <div className="flex justify-center mt-8 mb-8">
-        <Link href="/contact">
-          <Button variant="primary">Discuss Your Requirements</Button>
-        </Link>
-      </div>
+      </Accordion>
     </section>
   );
 }
