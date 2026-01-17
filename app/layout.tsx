@@ -35,8 +35,8 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'Wize Idea - Independent AI Architecture & Research Consultancy',
-    template: '%s | Wize Idea'
+    default: 'Wize Idea - AI Architecture - Research - Advisory Practice',
+    template: '%s | Wize Idea - AI Architecture - Research - Advisory Practice'
   },
   description:
     'Independent consulting and research practice specializing in AI systems architecture, authorship integrity, and forensic stylometry.',
@@ -65,9 +65,12 @@ const RootLayout: FC<Props> = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-saltWhite text-striationCharcoal antialiased font-serif-body">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <NavMenu />
-        <main className="max-w-7xl mx-auto py-8 px-4">{children}</main>
-        <footer className="bg-lightSmoke pt-3 pb-3">
+        <main id="main-content" role="main" className="max-w-7xl mx-auto py-8 px-4">{children}</main>
+        <footer role="contentinfo" className="bg-lightSmoke pt-3 pb-3">
           <div className="max-w-4xl mx-auto text-center text-sm text-dpmOlive">
             <Link href="/legal" className="hover:text-burntOchre transition-colors">© {new Date().getFullYear()} Wize Ideation</Link>. All rights reserved.
           </div>

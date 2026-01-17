@@ -2,7 +2,7 @@ import { getAllPapers } from '@/lib/papers-data';
 import { ResearchList } from '@/components/ResearchList';
 
 export const metadata = {
-  title: 'Research Papers | Wize Idea - AI Architecture & Authorship Analysis',
+  title: 'Research Papers',
   description: 'Independent research publications on AI systems, authorship integrity, forensic stylometry, and linguistic pattern analysis. Peer-reviewed technical papers with DOI attribution.',
   openGraph: {
     title: 'Research Papers | Wize Idea',

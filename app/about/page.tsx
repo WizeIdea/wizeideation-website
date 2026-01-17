@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'About | Wize Idea - Independent AI Research & Advisory Practice',
+  title: 'About',
   description: 'Independent technical consultancy specialising in AI architecture research, authorship integrity systems, and forensic linguistic analysis. Principal-led advisory services.',
   openGraph: {
     title: 'About Wize Idea',
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <div className="hidden sm:block float-right ml-6 mb-6 w-64">
         <Image
           src="/logo_r.png"
-          alt="Wize Idea flax plant logo"
+          alt=""
           width={250}
           height={250}
           className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity"

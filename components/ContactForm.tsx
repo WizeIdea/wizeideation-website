@@ -6,12 +6,14 @@ export default function ContactForm() {
   const [enquiryType, setEnquiryType] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget; // Store reference before async
     setIsSubmitting(true);
     setStatus('idle');
+    setErrors({});
 
     const formData = new FormData(form);
     
@@ -57,7 +59,7 @@ export default function ContactForm() {
   return (
     <>
       {status === 'success' && (
-        <div className="mb-6 p-4 border-l-4 border-burntOchre bg-olive50">
+        <div className="mb-6 p-4 border-l-4 border-burntOchre bg-olive50" role="alert" aria-live="polite">
           <p className="font-serif-body text-striationCharcoal">
             <strong>Thank you!</strong> Your message has been sent successfully. We'll respond within 1-2 business days.
           </p>
@@ -65,7 +67,7 @@ export default function ContactForm() {
       )}
 
       {status === 'error' && (
-        <div className="mb-6 p-4 border-l-4 border-red-600 bg-red-50">
+        <div className="mb-6 p-4 border-l-4 border-red-600 bg-red-50" role="alert" aria-live="assertive">
           <p className="font-serif-body text-striationCharcoal">
             <strong>Error:</strong> Unable to send message. Please try again later.
           </p>
@@ -102,8 +104,15 @@ export default function ContactForm() {
             name="name"
             required
             disabled={isSubmitting}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            aria-invalid={errors.name ? "true" : "false"}
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white disabled:opacity-50"
           />
+          {errors.name && (
+            <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div>
@@ -119,8 +128,15 @@ export default function ContactForm() {
             autoComplete="email"
             pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
             title="Please enter a valid email address (e.g., user@example.com)"
+            aria-describedby={errors.email ? "email-error" : undefined}
+            aria-invalid={errors.email ? "true" : "false"}
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white disabled:opacity-50"
           />
+          {errors.email && (
+            <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
@@ -134,6 +150,8 @@ export default function ContactForm() {
             value={enquiryType}
             onChange={(e) => setEnquiryType(e.target.value)}
             disabled={isSubmitting}
+            aria-describedby={errors['enquiry-type'] ? "enquiry-type-error" : undefined}
+            aria-invalid={errors['enquiry-type'] ? "true" : "false"}
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white disabled:opacity-50"
           >
             <option value="">Select an option</option>
@@ -141,6 +159,11 @@ export default function ContactForm() {
             <option value="Services">Services</option>
             <option value="Administration">Administration</option>
           </select>
+          {errors['enquiry-type'] && (
+            <p id="enquiry-type-error" className="mt-1 text-sm text-red-600" role="alert">
+              {errors['enquiry-type']}
+            </p>
+          )}
         </div>
 
         {/* Conditional Service Selection - only shown when "Services" is selected */}
@@ -175,8 +198,15 @@ export default function ContactForm() {
             rows={6}
             required
             disabled={isSubmitting}
+            aria-describedby={errors.message ? "message-error" : undefined}
+            aria-invalid={errors.message ? "true" : "false"}
             className="w-full px-3 py-2 border border-dpmOlive rounded-none focus:outline-none focus:ring-2 focus:ring-burntOchre bg-white resize-vertical disabled:opacity-50"
           />
+          {errors.message && (
+            <p id="message-error" className="mt-1 text-sm text-red-600" role="alert">
+              {errors.message}
+            </p>
+          )}
         </div>
 
         <button

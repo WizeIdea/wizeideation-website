@@ -54,31 +54,31 @@ const Home: FC = () => {
 
         {/* Three Pillars */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Link href="/services#service-1" className="block">
+          <Link href="/services#service-1" className="block" aria-label="Learn more about Attribution Integrity services">
             <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
               <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Attribution Integrity</h3>
               <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
                 Designing systems that preserve authorship clarity and institutional accountability.
               </p>
-              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+              <span className="font-serif-body text-xs text-burntOchre" aria-hidden="true">Learn more →</span>
             </div>
           </Link>
-          <Link href="/services#service-2" className="block">
+          <Link href="/services#service-2" className="block" aria-label="Learn more about Forensic Stylometry services">
             <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
               <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Forensic Stylometry</h3>
               <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
                 Attribution analysis and linguistic fingerprinting for AI-generated and human-authored content.
               </p>
-              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+              <span className="font-serif-body text-xs text-burntOchre" aria-hidden="true">Learn more →</span>
             </div>
           </Link>
-          <Link href="/services#service-3" className="block">
+          <Link href="/services#service-3" className="block" aria-label="Learn more about Auditable AI Systems services">
             <div className="border border-dpmOlive bg-olive50 p-6 hover:border-burntOchre hover:shadow-md transition-all cursor-pointer">
               <h3 className="font-serif-primary text-burntOchre text-xl font-bold mb-3">Auditable AI Systems</h3>
               <p className="font-serif-body text-sm text-striationCharcoal leading-relaxed mb-2">
                 Architectural design for authorship integrity across complex institutional frameworks.
               </p>
-              <span className="font-serif-body text-xs text-burntOchre">Learn more →</span>
+              <span className="font-serif-body text-xs text-burntOchre" aria-hidden="true">Learn more →</span>
             </div>
           </Link>
         </div>

@@ -8,7 +8,7 @@ import { ServiceDivider } from '@/components/ui/ServiceDivider';
 import { Accordion } from '@/components/ui/Accordion';
 
 export const metadata: Metadata = {
-  title: 'Advisory Services | Wize Idea - AI Architecture & Research Consultancy',
+  title: 'Advisory Services',
   description: 'Independent technical consultancy providing research, architectural analysis, and advisory services for AI systems, authorship integrity, and forensic stylometry.',
   openGraph: {
     title: 'Advisory Services | Wize Idea',

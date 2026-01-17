@@ -19,6 +19,7 @@ interface AccordionProps {
 export function Accordion({ id, title, summary, children, defaultOpen = false, imageName, className, headingLevel = 'h2', contentBgColor, bgColor }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const accordionRef = useRef<HTMLDivElement>(null);
+  const contentId = id ? `${id}-content` : `accordion-content-${Math.random().toString(36).substr(2, 9)}`;
 
   useEffect(() => {
     // Check if URL hash matches this accordion's ID
@@ -40,6 +41,7 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
         onClick={() => setIsOpen(!isOpen)}
         className={`w-full text-left p-6 flex ${summary ? 'items-start' : 'items-center'} justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-dpmOlive focus:ring-offset-2 ${className || ''}`}
         aria-expanded={isOpen}
+        aria-controls={contentId}
       >
         <div className="flex-1">
           {headingLevel === 'h2' ? (
@@ -90,7 +92,7 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
       </button>
       
       {isOpen && (
-        <div className={`px-6 pb-6 border-t border-dpmOlive ${contentBgColor || ''}`}>
+        <div id={contentId} className={`px-6 pb-6 border-t border-dpmOlive ${contentBgColor || ''}`}>
           <div className="pt-6">
             {children}
           </div>

@@ -1,3 +1,25 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Independent research projects and applied technical work in AI systems architecture, authorship integrity, and forensic stylometry by Wize Idea consultancy.',
+  openGraph: {
+    title: 'Projects | Wize Idea',
+    description: 'Research projects and technical initiatives in AI architecture, authorship provenance, and auditable systems design.',
+    url: 'https://wizeidea.com/projects/',
+    siteName: 'Wize Idea',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+};
+
 export default function ProjectsIndex() {
   return (
     <section className="max-w-4xl mx-auto font-serif-body text-base">

@@ -23,6 +23,7 @@ export const PaperCard: FC<PaperCardProps> = ({ slug, title, excerpt }) => (
       <Link
         href={`/papers/${slug}`}
         className="group-hover:text-burntOchre transition-colors"
+        aria-label={`Read paper: ${title}`}
       >
         {title}
       </Link>

@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact | Wize Ideation - Inquiries & Advisory Engagement',
+  title: 'Contact',
   description: 'Contact independent AI architecture consultancy for research inquiries, technical advisory services, or engagement discussions. Principal-led consultancy practice.',
   openGraph: {
-    title: 'Contact Wize Ideation',
+    title: 'Contact | Wize Idea',
     description: 'Get in touch for technical advisory services, research collaboration, or engagement inquiries.',
     url: 'https://wizeidea.com/contact/',
-    siteName: 'Wize Ideation',
+    siteName: 'Wize Idea',
     type: 'website',
   },
   robots: {

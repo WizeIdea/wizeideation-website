@@ -5,7 +5,7 @@ interface ServiceDividerProps {
   alt?: string;
 }
 
-export function ServiceDivider({ imageName, alt = 'Decorative divider' }: ServiceDividerProps) {
+export function ServiceDivider({ imageName, alt = '' }: ServiceDividerProps) {
   return (
     <div className="relative w-full max-w-xs mx-auto my-8">
       <Image

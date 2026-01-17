@@ -17,7 +17,11 @@ export const FeaturedPaperCard: FC<FeaturedPaperCardProps> = ({
   DocID,
 }) => {
   return (
-    <Link href={`/papers/${slug}`} className="block group">
+    <Link 
+      href={`/papers/${slug}`} 
+      className="block group"
+      aria-label={`Read paper: ${title}`}
+    >
       <div className="border border-dpmOlive bg-lightSmoke p-3 hover:border-burntOchre hover:shadow-md transition-all">
         {/* DOI Link */}
         {DOI && (

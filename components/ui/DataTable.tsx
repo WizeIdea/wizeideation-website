@@ -39,6 +39,7 @@ export const DataTable = <T extends Record<string, unknown>>({
             {columns.map((col) => (
               <th
                 key={String(col.accessor)}
+                scope="col"
                 className="px-4 py-2 text-left border-b border-dpmOlive"
               >
                 {col.header}
