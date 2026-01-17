@@ -35,11 +35,11 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'Wize Idea – Tactical Intellectual Research',
+    default: 'Wize Idea - Independent AI Architecture & Research Consultancy',
     template: '%s | Wize Idea'
   },
   description:
-    'A high‑end research archive for stylometric alignment, AI persona architecture, and forensic linguistics.',
+    'Independent consulting and research practice specializing in AI systems architecture, authorship integrity, and forensic stylometry.',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',

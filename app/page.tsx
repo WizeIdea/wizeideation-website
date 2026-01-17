@@ -1,20 +1,28 @@
 import Image from 'next/image';
 import { FC } from 'react';
-import Seo from '@/components/Seo';
+import { Metadata } from 'next';
 import { Button } from '@/components/ui/Button';
 import { FeaturedPaperCard } from '@/components/FeaturedPaperCard';
 import { getFeaturedPapers } from '@/lib/papers-data';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Independent consulting and research practice operating at the intersection of artificial intelligence, systems architecture, and human authorship.',
+  openGraph: {
+    title: 'Wize Idea - Strategic AI Architecture & Authorship Integrity',
+    description: 'Independent consulting and research practice specializing in AI systems architecture, authorship provenance, and forensic stylometry.',
+    url: 'https://wizeidea.com/',
+    siteName: 'Wize Idea',
+    type: 'website',
+  },
+};
 
 const Home: FC = () => {
   const featuredPapers = getFeaturedPapers(3);
 
   return (
     <>
-      <Seo
-        title="Home"
-        description="Tactical Intellectual research archive – stylometric alignment, AI persona architecture, forensic linguistics."
-      />
       
       {/* Hero Section - Full bleed landscape banner */}
       <section className="relative w-full overflow-hidden rounded-none -mt-8 -mx-4">
