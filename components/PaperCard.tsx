@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import type { FC } from 'react';
-
-export interface PaperCardProps {
-  slug: string;
-  title: string;
-  excerpt: string;
-}
+import type { CardProps } from '@/lib/types';
 
 /**
  * Forensic‑styled card displaying a research paper.
@@ -13,7 +8,7 @@ export interface PaperCardProps {
  *   - `role="article"` for screen readers.
  *   - `tabIndex={0}` + focus-visible outline.
  */
-export const PaperCard: FC<PaperCardProps> = ({ slug, title, excerpt }) => (
+export const PaperCard: FC<CardProps> = ({ slug, title, excerpt }) => (
   <article
     role="article"
     tabIndex={0}

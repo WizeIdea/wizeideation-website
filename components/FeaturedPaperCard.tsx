@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FC } from 'react';
+import { CARD_LIGHT } from '@/lib/styles';
 
 interface FeaturedPaperCardProps {
   slug: string;
@@ -22,7 +23,7 @@ export const FeaturedPaperCard: FC<FeaturedPaperCardProps> = ({
       className="block group"
       aria-label={`Read paper: ${title}`}
     >
-      <div className="border border-dpmOlive bg-lightSmoke p-3 hover:border-burntOchre hover:shadow-md transition-all">
+      <div className={CARD_LIGHT}>
         {/* DOI Link */}
         {DOI && (
           <div className="mb-1">

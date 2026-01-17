@@ -1,9 +1,10 @@
 import type { FC, ReactNode } from 'react';
-import clsx from 'clsx';
+import { CARD_BASE, CARD_HOVER } from '@/lib/styles';
 
 interface CardProps {
   children: ReactNode;
   className?: string;
+  interactive?: boolean;
 }
 
 /**
@@ -11,17 +12,12 @@ interface CardProps {
  * - Light olive background (olive50)
  * - 1px DPM Olive border
  * - No rounded corners
- * - Subtle hover: border darkens to Burnt Ochre.
+ * - Optional hover effect (border darkens to Burnt Ochre).
  */
-export const Card: FC<CardProps> = ({ children, className = '' }) => {
+export const Card: FC<CardProps> = ({ children, className = '', interactive = true }) => {
+  const hoverClass = interactive ? CARD_HOVER : '';
   return (
-    <div
-      className={clsx(
-        'border border-dpmOlive bg-olive50 p-4 transition-colors duration-150',
-        'hover:border-burntOchre',
-        className,
-      )}
-    >
+    <div className={`${CARD_BASE} ${hoverClass} ${className}`.trim()}>
       {children}
     </div>
   );

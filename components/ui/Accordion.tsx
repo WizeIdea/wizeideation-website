@@ -39,7 +39,7 @@ export function Accordion({ id, title, summary, children, defaultOpen = false, i
     <div ref={accordionRef} id={id} className={`border border-dpmOlive mb-6 transition-colors hover:border-burntOchre ${bgColor || ''}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full text-left p-6 flex ${summary ? 'items-start' : 'items-center'} justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-dpmOlive focus:ring-offset-2 ${className || ''}`}
+        className={`w-full text-left p-6 flex ${summary ? 'items-start' : 'items-center'} justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-burntOchre focus:ring-offset-2 ${className || ''}`}
         aria-expanded={isOpen}
         aria-controls={contentId}
       >

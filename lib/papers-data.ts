@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import type { Paper } from './types';
 
 // Directory containing paper markdown files
 const PAPERS_DIR = path.join(process.cwd(), 'content', 'papers');
@@ -13,17 +14,6 @@ function normalizeDate(date: any): string | undefined {
   if (typeof date === 'string') return date;
   if (date instanceof Date) return date.toISOString().split('T')[0];
   return undefined;
-}
-
-export interface Paper {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date?: string;
-  Authors?: string | string[];
-  ORCID?: string;
-  DOI?: string;
-  featured?: boolean;
 }
 
 /**

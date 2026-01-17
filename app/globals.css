@@ -3,13 +3,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================================================
+   CSS Custom Properties (CSS Variables)
+   ============================================================================ */
+:root {
+  /* Transitions */
+  --transition-base: 150ms ease-in-out;
+  --transition-colors: color 150ms ease-in-out, background-color 150ms ease-in-out, border-color 150ms ease-in-out;
+  --transition-transform: transform 150ms ease-in-out;
+  
+  /* Spacing */
+  --page-gutter: 1rem;
+  --section-spacing: 2rem;
+  
+  /* Borders */
+  --border-width-thin: 1px;
+  --border-width-thick: 2px;
+  --border-width-accent: 4px;
+  
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-card-hover: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 /* Prevent layout shift from scrollbar appearance */
 html {
   scrollbar-gutter: stable;
 }
-/* Global focus-visible style – matches the forensic “instrument” colour */
+/* Global focus-visible style – Burnt Ochre for keyboard navigation per Corporate Theme */
 :focus-visible {
-  outline: 2px solid theme('colors.dpm-olive');
+  outline: 2px solid theme('colors.burnt-ochre');
   outline-offset: 2px;
 }/* Skip link - visible on focus */
 .skip-link {
