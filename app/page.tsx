@@ -39,7 +39,7 @@ const Home: FC = () => {
       </section>
 
       {/* Value Proposition */}
-      <section className="max-w-4xl mx-auto mb-8">
+      <section className="max-w-4xl mx-auto mt-8 mb-8">
         <p className="text-lg text-center mb-8 text-striationCharcoal font-serif-body leading-relaxed">
           Wize Idea is an independent consulting and research practice operating at the intersection of artificial intelligence, systems architecture, and human authorship.
         </p>
