@@ -1,0 +1,68 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times Roman font
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\definecolor{BurntOchre}{HTML}{B7410E}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Subtle brand color for headings
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{BurntOchre}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{BurntOchre}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{BurntOchre}}{\thesubsubsection}{1em}{}
+
+% Professional footer with corrected domain
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small\color{gray}Wize Idea | wizeidea.com}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Metadata
+\title{$title$}
+\author{$if(Authors)$$Authors$$else$Scott, N.$endif$}
+\date{$if(date)$$date$$else$\today$endif$}
+
+\begin{document}
+\maketitle
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$if(keywords)$
+\noindent\textbf{Keywords:} $keywords$
+\par
+$endif$
+
+$if(DOI)$
+\noindent\textbf{DOI:} \href{https://doi.org/$DOI$}{$DOI$}
+\par
+$endif$
+
+$if(ORCID)$
+\noindent\textbf{ORCID:} \href{https://orcid.org/$ORCID$}{$ORCID$}
+\par
+$endif$
+
+\vspace{1em}
+
+$body$
+
+$if(bibliography)$
+\bibliographystyle{apalike}
+\bibliography{$bibliography$}
+$endif$
+
+\end{document}

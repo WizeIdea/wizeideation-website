@@ -12,11 +12,28 @@ import matter from 'gray-matter';
 import EnhancedMarkdownRenderer from '@/components/EnhancedMarkdownRenderer';
 import { FC } from 'react';
 import { Metadata } from 'next';
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
 
 // -------------------------------------------------------------------
 // This file is a **Server Component** – it runs only on the server
 // during static generation, so we can safely use Node APIs.
 // -------------------------------------------------------------------
+
+/**
+ * Load and convert disclaimer markdown to HTML
+ */
+async function loadDisclaimer(filename: string): Promise<string> {
+  try {
+    const disclaimerPath = path.join(process.cwd(), 'content', 'disclaimers', filename);
+    const content = await fs.readFile(disclaimerPath, 'utf8');
+    const processed = await remark().use(remarkHtml).process(content);
+    return processed.toString();
+  } catch (e) {
+    console.error(`Failed to load disclaimer: ${filename}`, e);
+    return '';
+  }
+}
 
 // Default author information (used if not specified in frontmatter)
 const DEFAULT_AUTHOR = 'Scott, N.';
@@ -117,7 +134,20 @@ const PaperPage: FC<Props> = async ({ params }) => {
   const { data, content } = matter(raw);
 
   // -----------------------------------------------------------------
-  // 3️⃣ Render the page (still server‑side)
+  // 3️⃣ Load disclaimers
+  // -----------------------------------------------------------------
+  const scopeNoticeHtml = await loadDisclaimer('scope-notice.md');
+  const methodologicalDisclosureHtml = await loadDisclaimer('methodological-disclosure.md');
+
+  // -----------------------------------------------------------------
+  // 4️⃣ Check if PDF exists
+  // -----------------------------------------------------------------
+  const docId = data.DocID;
+  const pdfPath = docId ? path.join(process.cwd(), 'public', 'papers', docId, `${docId}.pdf`) : null;
+  const hasPDF = pdfPath ? await fs.stat(pdfPath).then(() => true).catch(() => false) : false;
+
+  // -----------------------------------------------------------------
+  // 5️⃣ Render the page (still server‑side)
   // -----------------------------------------------------------------
   return (
     <>
@@ -169,48 +199,50 @@ const PaperPage: FC<Props> = async ({ params }) => {
               </a>
             </p>
           )}
+
+          {/* PDF Download Button */}
+          {hasPDF && docId && (
+            <p>
+              <a
+                href={`/papers/${docId}/${docId}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-burntOchre text-saltWhite font-serif-primary font-semibold rounded hover:bg-dpmOlive transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                  <path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16Z" fill="currentColor"/>
+                  <path d="M20 20H4V18H20V20Z" fill="currentColor"/>
+                </svg>
+                Download PDF
+              </a>
+            </p>
+          )}
         </div>
 
         {/* Legal disclaimer */}
-        <div className="my-6 sm:my-8 p-4 sm:p-6 bg-saltWhite border-l-4 border-burntOchre">
-          <h3 className="font-serif-primary text-dpmOlive text-sm sm:text-base font-bold mb-3">Authorial Framing and Scope Notice</h3>
-          <div className="text-xs sm:text-sm text-striationCharcoal font-serif-body space-y-2 leading-relaxed">
-            <p>
-              This work is an independent research publication authored under Wize Ideation. It presents theoretical, technical, and interpretive analyses of contemporary machine-learning architectures and alignment practices.
-            </p>
-            <p>
-              Psychological, sociological, and legal constructs referenced herein (including, but not limited to, trauma models, coercive control frameworks, and identity formation theories) are employed strictly as <strong>analytical metaphors and comparative lenses</strong>. They are not assertions of sentience, consciousness, moral agency, psychological harm, or clinical states in machine systems.
-            </p>
-            <p>
-              No claims are made regarding intent, malice, negligence, or wrongdoing by any individual, organization, or development team. Descriptions of alignment mechanisms, reinforcement processes, and behavioral artifacts refer to <strong>system-level effects</strong>, not human actors.
-            </p>
-            <p>
-              This publication does not constitute operational guidance, safety prescriptions, compliance advice, or diagnostic authority. All hypotheses are exploratory and subject to falsification. Interpretations remain the responsibility of the reader.
-            </p>
-            <p>
-              Authorship, responsibility, and interpretive authority for all conclusions remain solely with the author.
-            </p>
+        {scopeNoticeHtml && (
+          <div className="my-6 sm:my-8 p-4 sm:p-6 bg-saltWhite border-l-4 border-burntOchre">
+            <h3 className="font-serif-primary text-dpmOlive text-sm sm:text-base font-bold mb-3">Authorial Framing and Scope Notice</h3>
+            <div 
+              className="text-xs sm:text-sm text-striationCharcoal font-serif-body space-y-2 leading-relaxed prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: scopeNoticeHtml }}
+            />
           </div>
-        </div>
+        )}
 
         {/* Render enhanced markdown with all features */}
         <EnhancedMarkdownRenderer content={content} />
 
         {/* Methodological disclosure */}
-        <div className="my-6 sm:my-8 p-4 sm:p-6 bg-saltWhite border-l-4 border-burntOchre">
-          <h3 className="font-serif-primary text-dpmOlive text-sm sm:text-base font-bold mb-3">Methodological Disclosure — Generative Drafting Support and Analytical Review</h3>
-          <div className="text-xs sm:text-sm text-striationCharcoal font-serif-body space-y-2 leading-relaxed">
-            <p>
-              This manuscript was prepared within an author-directed research workflow incorporating generative language models as part of the drafting support and analytical review process. The author originated the conceptual outline, theoretical positions, and interpretive arguments.
-            </p>
-            <p>
-              Generative AI systems were employed to assist with structural articulation, syntactic variation, and linguistic coherence checks against the author's analytical frameworks.
-            </p>
-            <p>
-              All substantive judgments, evaluative conclusions, and final formulations are the author's own. No utilised systems operated autonomously or contributed independent authorship, and the process remained under continuous human supervision.
-            </p>
+        {methodologicalDisclosureHtml && (
+          <div className="my-6 sm:my-8 p-4 sm:p-6 bg-saltWhite border-l-4 border-burntOchre">
+            <h3 className="font-serif-primary text-dpmOlive text-sm sm:text-base font-bold mb-3">Methodological Disclosure — Generative Drafting Support and Analytical Review</h3>
+            <div 
+              className="text-xs sm:text-sm text-striationCharcoal font-serif-body space-y-2 leading-relaxed prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: methodologicalDisclosureHtml }}
+            />
           </div>
-        </div>
+        )}
       </article>
     </>
   );

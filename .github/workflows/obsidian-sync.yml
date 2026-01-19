@@ -42,20 +42,35 @@ jobs:
       - name: Copy selected markdown
         run: npm run copy-md
 
-      # 6️⃣ **Commit published papers to website repo for archival**
-      - name: Commit published papers
+      # 6️⃣ **Install Pandoc and LaTeX for PDF generation**
+      - name: Install PDF dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+
+      # 7️⃣ **Compile PDF generation script**
+      - name: Compile PDF generation script
+        run: npm run build-pdf-script
+
+      # 8️⃣ **Generate PDFs for new papers**
+      - name: Generate PDFs
+        run: npm run generate-pdfs
+
+      # 9️⃣ **Commit published papers and PDFs to website repo for archival**
+      - name: Commit published papers and PDFs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add content/papers/*.md content/services/*.md content/projects/*.md 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "Archive published papers from Obsidian [skip ci]"
+          git add public/papers/**/*.pdf 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Archive published papers and PDFs from Obsidian [skip ci]"
           git push
 
-      # 7️⃣ Build the static site (Next.js will read the newly‑copied markdown)
+      # 🔟 Build the static site (Next.js will read the newly‑copied markdown)
       - name: Build static site
         run: npm run build
 
-      # 8️⃣ Configure AWS credentials
+      # 1️⃣1️⃣ Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -63,10 +78,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 9️⃣ Deploy static site to S3
+      # 1️⃣2️⃣ Deploy static site to S3
       - name: Deploy static site to S3
         run: |
-          # Cache immutable assets aggressively
+          # Cache immutable assets aggressively (including PDFs)
           aws s3 sync out s3://${{ secrets.S3_BUCKET_NAME }} \
             --delete \
             --cache-control "public, max-age=31536000, immutable" \
@@ -80,7 +95,7 @@ jobs:
             --include "index.html" \
             --include "404.html"
 
-      # 🔟 Invalidate CloudFront cache
+      # 1️⃣3️⃣ Invalidate CloudFront cache
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \

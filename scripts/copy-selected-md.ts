@@ -30,31 +30,13 @@ const ALLOWED_FRONTMATTER_FIELDS = [
 ];
 
 // ---------------------------------------------------------------
-// Determine the source folder that actually contains markdown files.
-//   - CI: `obsidian/` (cloned Obsidian repo)
-//   - Local dev: fallback to `content/` if `obsidian/` is empty or missing
+// Determine the source folder that contains markdown files.
+//   - Source: `obsidian/` (cloned Obsidian repo or local Obsidian folder)
 // ---------------------------------------------------------------
-const POSSIBLE_SOURCES = [
-  path.resolve(process.cwd(), 'obsidian'), // CI source
-  path.resolve(process.cwd(), 'content'), // local fallback
-];
+const OB_CONTENT_ROOT = path.resolve(process.cwd(), 'obsidian');
 
-let OB_CONTENT_ROOT = '';
-for (const src of POSSIBLE_SOURCES) {
-  try {
-    const entries = fs.readdirSync(src);
-    const hasMd = entries.some((e) => e.endsWith('.md'));
-    if (hasMd) {
-      OB_CONTENT_ROOT = src;
-      break;
-    }
-  } catch {
-    // folder may not exist – ignore
-  }
-}
-
-if (!OB_CONTENT_ROOT) {
-  console.warn('⚠️  No markdown source folder found (neither obsidian nor content). Nothing to copy.');
+if (!fs.existsSync(OB_CONTENT_ROOT)) {
+  console.warn('⚠️  Obsidian source folder not found. Nothing to copy.');
 }
 
 const DEST_ROOT = path.resolve(process.cwd(), 'content');
@@ -100,8 +82,8 @@ function filterFrontmatter(data: any): any {
  * Main copy routine – only copies files where `publish: true`.
  */
 function copyPublished() {
-  if (!OB_CONTENT_ROOT) {
-    console.log('⚠️  No markdown files were copied because no source folder was found.');
+  if (!fs.existsSync(OB_CONTENT_ROOT)) {
+    console.log('⚠️  No markdown files were copied because obsidian folder was not found.');
     return;
   }
 
