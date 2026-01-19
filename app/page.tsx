@@ -7,7 +7,7 @@ import { getFeaturedPapers } from '@/lib/papers-data';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Wize Idea - AI Architecture - Research - Advisory Practice',
   description: 'Independent consulting and research practice operating at the intersection of artificial intelligence, systems architecture, and human authorship.',
   openGraph: {
     title: 'Wize Idea - Strategic AI Architecture & Authorship Integrity',
