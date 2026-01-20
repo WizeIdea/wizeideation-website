@@ -16,6 +16,6 @@
     "declaration": false
   },
 
-  // Only compile the copy‑script (keeps the compile fast)
-  "include": ["copy-selected-md.ts"]
+  // Only compile the copy‑script and PDF generation script
+  "include": ["copy-selected-md.ts", "generate-pdfs.ts"]
 }

@@ -48,15 +48,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-latex-base texlive-latex-extra texlive-fonts-recommended
 
-      # 7️⃣ **Compile PDF generation script**
-      - name: Compile PDF generation script
-        run: npm run build-pdf-script
-
-      # 8️⃣ **Generate PDFs for new papers**
+      # 7️⃣ **Generate PDFs for new papers**
       - name: Generate PDFs
         run: npm run generate-pdfs
 
-      # 9️⃣ **Commit published papers and PDFs to website repo for archival**
+      # 8️⃣ **Commit published papers and PDFs to website repo for archival**
       - name: Commit published papers and PDFs
         run: |
           git config user.name "github-actions[bot]"
@@ -66,11 +62,11 @@ jobs:
           git diff --staged --quiet || git commit -m "Archive published papers and PDFs from Obsidian [skip ci]"
           git push
 
-      # 🔟 Build the static site (Next.js will read the newly‑copied markdown)
+      # 9️⃣ Build the static site (Next.js will read the newly‑copied markdown)
       - name: Build static site
         run: npm run build
 
-      # 1️⃣1️⃣ Configure AWS credentials
+      # 🔟 Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -78,7 +74,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # 1️⃣2️⃣ Deploy static site to S3
+      # 1️⃣1️⃣ Deploy static site to S3
       - name: Deploy static site to S3
         run: |
           # Cache immutable assets aggressively (including PDFs)
@@ -95,7 +91,7 @@ jobs:
             --include "index.html" \
             --include "404.html"
 
-      # 1️⃣3️⃣ Invalidate CloudFront cache
+      # 1️⃣2️⃣ Invalidate CloudFront cache
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \

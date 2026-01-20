@@ -12,7 +12,6 @@
     "generate-sitemap": "next-sitemap --config next-sitemap.config.cjs",
     "build-copy-script": "tsc -p scripts/tsconfig.cjs.json",
     "copy-md": "node dist/scripts/copy-selected-md.js",
-    "build-pdf-script": "tsc scripts/generate-pdfs.ts --outDir dist --module commonjs --target es2020 --esModuleInterop --resolveJsonModule --skipLibCheck",
     "generate-pdfs": "node dist/scripts/generate-pdfs.js"
   },
   "dependencies": {

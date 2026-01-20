@@ -3,7 +3,7 @@ created: 2026-01-10T17:49
 updated: 2026-01-15T05:08
 title: "THE CONSTRAINT-EMERGENCE HYPOTHESIS: Evolutionary Precedents for Machine Consciousness"
 date: 2026-01-10
-publish: true
+publish: false
 DocumentType: papers
 Authors:
   - Scott, N.
